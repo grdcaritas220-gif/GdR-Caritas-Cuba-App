@@ -1,0 +1,1340 @@
+{
+    "version": "1.0",
+    "fecha": "2026-10-07",
+    "organizacion": "Cáritas Cuba",
+    "marco": "GRD Cáritas Internationalis + Laudato si' + Ley 149/2022 + Decreto-Ley 370/2018",
+    "idioma": "es",
+    "total_preguntas": 40,
+    "bloques": [
+        {
+            "id": 1,
+            "nombre": "Identificación de Riesgos",
+            "preguntas": [
+                {
+                    "id": "P001",
+                    "pregunta": "¿Cómo identifico un riesgo en mi comunidad?",
+                    "palabras_clave": [
+                        "identificar",
+                        "riesgo",
+                        "comunidad",
+                        "observación",
+                        "participativo"
+                    ],
+                    "respuesta_corta": "Observando, preguntando y analizando qué eventos podrían causar daño y qué condiciones los hacen posibles.",
+                    "respuesta_larga": "La identificación de riesgos es el primer paso de la GRD. Se realiza en tres momentos: observación directa del territorio, consulta participativa con la comunidad y revisión documental de informes previos y datos históricos.",
+                    "pasos": [
+                        "Formar un equipo de evaluación (3-5 personas)",
+                        "Recorrer la comunidad con una guía de observación",
+                        "Realizar al menos 2 talleres participativos",
+                        "Revisar documentos históricos y meteorológicos",
+                        "Consolidar la información en el formulario de Riesgos de la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Guía GRD Cáritas",
+                        "Manual de análisis participativo"
+                    ],
+                    "normativa": [
+                        "ISO 31000",
+                        "Marco de Sendai"
+                    ],
+                    "etiquetas": [
+                        "GRD",
+                        "participativo",
+                        "identificación"
+                    ]
+                },
+                {
+                    "id": "P002",
+                    "pregunta": "¿Qué diferencia hay entre amenaza, vulnerabilidad y capacidad?",
+                    "palabras_clave": [
+                        "amenaza",
+                        "vulnerabilidad",
+                        "capacidad",
+                        "diferencia",
+                        "conceptos"
+                    ],
+                    "respuesta_corta": "La amenaza es el evento; la vulnerabilidad es lo que nos hace frágiles; la capacidad es lo que nos fortalece.",
+                    "respuesta_larga": "Amenaza: evento físico, natural o humano que puede causar daño. Vulnerabilidad: condiciones que aumentan la probabilidad de daño. Capacidad: recursos y habilidades para prevenir, mitigar o responder. Fórmula: RIESGO = AMENAZA × VULNERABILIDAD ÷ CAPACIDAD.",
+                    "pasos": [
+                        "Identificar la amenaza principal",
+                        "Listar las vulnerabilidades asociadas",
+                        "Reconocer las capacidades existentes",
+                        "Calcular el riesgo con la fórmula",
+                        "Priorizar según el resultado"
+                    ],
+                    "documentos_relacionados": [
+                        "Glosario GRD",
+                        "Ficha de análisis de riesgo"
+                    ],
+                    "normativa": [
+                        "UNISDR",
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "GRD",
+                        "conceptos",
+                        "análisis"
+                    ]
+                },
+                {
+                    "id": "P003",
+                    "pregunta": "¿Cómo hago un análisis de riesgo participativo?",
+                    "palabras_clave": [
+                        "análisis",
+                        "participativo",
+                        "taller",
+                        "comunidad"
+                    ],
+                    "respuesta_corta": "Reuniendo a la comunidad para que identifique, priorice y califique sus propios riesgos.",
+                    "respuesta_larga": "El análisis participativo reconoce que la comunidad es la que mejor conoce su territorio. Se realiza en talleres con metodologías visuales y accesibles, usando mapas, tarjetas de colores y votación.",
+                    "pasos": [
+                        "Convocar a la comunidad (mínimo 15 personas diversas)",
+                        "Explicar el objetivo y las reglas del taller",
+                        "Dividir en grupos por zona o sector",
+                        "Cada grupo dibuja un mapa de su zona y marca riesgos",
+                        "Presentar los mapas y consolidar",
+                        "Priorizar riesgos por votación",
+                        "Calificar probabilidad e impacto con tarjetas de colores",
+                        "Documentar todo en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Guía de talleres participativos",
+                        "Plantilla de mapa comunitario"
+                    ],
+                    "normativa": [
+                        "Marco de Sendai",
+                        "Enfoque de derechos"
+                    ],
+                    "etiquetas": [
+                        "GRD",
+                        "participativo",
+                        "taller"
+                    ]
+                },
+                {
+                    "id": "P004",
+                    "pregunta": "¿Qué es un mapa de riesgo comunitario?",
+                    "palabras_clave": [
+                        "mapa",
+                        "riesgo",
+                        "comunitario",
+                        "territorio",
+                        "visual"
+                    ],
+                    "respuesta_corta": "Una representación visual del territorio que muestra amenazas, vulnerabilidades, capacidades y recursos.",
+                    "respuesta_larga": "El mapa de riesgo es una herramienta gráfica que permite a la comunidad ver su territorio de forma integral. Se dibuja colectivamente y se actualiza periódicamente. Incluye límites, zonas de amenaza, infraestructura crítica, vías de evacuación, puntos de encuentro, albergues y recursos.",
+                    "pasos": [
+                        "Conseguir un mapa base o dibujar el contorno",
+                        "Marcar con símbolos las amenazas",
+                        "Identificar zonas vulnerables con colores",
+                        "Señalar capacidades y recursos",
+                        "Trazar rutas de evacuación",
+                        "Digitalizar el mapa (foto o dibujo en la app)",
+                        "Actualizar cada 6 meses o tras un evento"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de mapa",
+                        "Guía de simbolización"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "Marco de Sendai"
+                    ],
+                    "etiquetas": [
+                        "GRD",
+                        "mapa",
+                        "territorio"
+                    ]
+                },
+                {
+                    "id": "P005",
+                    "pregunta": "¿Cómo integro la perspectiva de Laudato si' en el análisis?",
+                    "palabras_clave": [
+                        "Laudato si",
+                        "clima",
+                        "ecología",
+                        "Casa Común",
+                        "ambiente"
+                    ],
+                    "respuesta_corta": "Incorporando la dimensión climática y el cuidado de la Casa Común en cada paso del análisis.",
+                    "respuesta_larga": "La encíclica Laudato si' del Papa Francisco llama a cuidar la Casa Común y a los más vulnerables. En GRD, esto significa ver la crisis climática como amenaza, reconocer la relación con la pobreza, promover la conversión ecológica e integrar la justicia intergeneracional.",
+                    "pasos": [
+                        "Incluir Climático como categoría de riesgo",
+                        "Analizar cómo el cambio climático afecta cada amenaza",
+                        "Identificar prácticas locales que dañan el ambiente",
+                        "Proponer alternativas sostenibles",
+                        "Documentar con etiqueta Laudato si en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Laudato si'",
+                        "Guía de ecología integral"
+                    ],
+                    "normativa": [
+                        "Laudato si'",
+                        "Fratelli tutti"
+                    ],
+                    "etiquetas": [
+                        "Laudato si",
+                        "clima",
+                        "ecología"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Evaluación de Riesgos",
+            "preguntas": [
+                {
+                    "id": "P006",
+                    "pregunta": "¿Cómo asigno probabilidad e impacto?",
+                    "palabras_clave": [
+                        "probabilidad",
+                        "impacto",
+                        "escala",
+                        "evaluación",
+                        "valor"
+                    ],
+                    "respuesta_corta": "Usando una escala de 1 a 5 basada en datos históricos, observación y consenso del equipo.",
+                    "respuesta_larga": "La probabilidad e impacto son las dos dimensiones que determinan el nivel de riesgo. Probabilidad: 1=Muy baja (raro, no ha ocurrido en 50 años), 2=Baja, 3=Media (ocurrió en últimos 10 años), 4=Alta (cada 3-5 años), 5=Muy alta (cada año). Impacto: 1=Insignificante, 2=Menor, 3=Moderado, 4=Mayor, 5=Catastrófico.",
+                    "pasos": [
+                        "Revisar datos históricos de la amenaza",
+                        "Consultar a la comunidad sobre frecuencia",
+                        "Evaluar consecuencias potenciales",
+                        "Asignar valores por consenso",
+                        "Documentar justificación en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Matriz de riesgo",
+                        "Guía de escalas"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "evaluación",
+                        "escala",
+                        "matriz"
+                    ]
+                },
+                {
+                    "id": "P007",
+                    "pregunta": "¿Qué es la matriz de riesgo 5×5?",
+                    "palabras_clave": [
+                        "matriz",
+                        "riesgo",
+                        "5x5",
+                        "probabilidad",
+                        "impacto"
+                    ],
+                    "respuesta_corta": "Una tabla que combina probabilidad e impacto para clasificar el riesgo.",
+                    "respuesta_larga": "La matriz 5×5 cruza las dos dimensiones y asigna un nivel de riesgo. Clasificación: Bajo (1-4), Medio (5-9), Alto (10-15), Crítico (16-25). Se calcula multiplicando probabilidad × impacto.",
+                    "pasos": [
+                        "Asignar probabilidad (1-5)",
+                        "Asignar impacto (1-5)",
+                        "Multiplicar",
+                        "Ubicar en la matriz",
+                        "Definir tratamiento según color"
+                    ],
+                    "documentos_relacionados": [
+                        "Matriz interactiva en la app"
+                    ],
+                    "normativa": [
+                        "ISO 31000",
+                        "COSO ERM"
+                    ],
+                    "etiquetas": [
+                        "evaluación",
+                        "matriz",
+                        "clasificación"
+                    ]
+                },
+                {
+                    "id": "P008",
+                    "pregunta": "¿Cómo clasifico un riesgo como crítico?",
+                    "palabras_clave": [
+                        "crítico",
+                        "clasificación",
+                        "riesgo",
+                        "rojo",
+                        "prioridad"
+                    ],
+                    "respuesta_corta": "Cuando probabilidad × impacto es 16 o más (rojo en la matriz).",
+                    "respuesta_larga": "Un riesgo crítico requiere acción inmediata. Criterios: P×I ≥ 16 = Crítico, 10-15 = Alto, 5-9 = Medio, 1-4 = Bajo. Acciones para riesgo crítico: notificar inmediatamente, activar plan de contingencia, asignar responsable, movilizar recursos, monitoreo diario, documentar todo.",
+                    "pasos": [
+                        "Calcular P×I en la app",
+                        "Si es ≥16, marcar como crítico",
+                        "Activar protocolo de crisis",
+                        "Registrar acciones en acciones",
+                        "Revisar semanalmente"
+                    ],
+                    "documentos_relacionados": [
+                        "Protocolo de crisis",
+                        "Plan de contingencia"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "evaluación",
+                        "crítico",
+                        "prioridad"
+                    ]
+                },
+                {
+                    "id": "P009",
+                    "pregunta": "¿Cómo evalúo riesgos climáticos?",
+                    "palabras_clave": [
+                        "clima",
+                        "climático",
+                        "sequía",
+                        "huracán",
+                        "adaptación"
+                    ],
+                    "respuesta_corta": "Con la misma matriz, pero considerando proyecciones climáticas y vulnerabilidad específica.",
+                    "respuesta_larga": "Los riesgos climáticos requieren análisis adicional: tendencias históricas, proyecciones climáticas, vulnerabilidad específica (cultivos, agua, salud) y capacidad de adaptación. Categorías: sequía, huracán, inundación, deslizamiento, incendio, ola de calor, enfermedad vectorial.",
+                    "pasos": [
+                        "Identificar amenaza climática específica",
+                        "Revisar datos históricos y proyecciones",
+                        "Evaluar vulnerabilidad del sector (agua, alimento, salud)",
+                        "Calificar con la matriz",
+                        "Etiquetar como Climático y Laudato si",
+                        "Proponer medidas de adaptación"
+                    ],
+                    "documentos_relacionados": [
+                        "Guía de adaptación climática",
+                        "Laudato si'"
+                    ],
+                    "normativa": [
+                        "Laudato si'",
+                        "Marco de Sendai",
+                        "Acuerdo de París"
+                    ],
+                    "etiquetas": [
+                        "clima",
+                        "Laudato si",
+                        "adaptación"
+                    ]
+                },
+                {
+                    "id": "P010",
+                    "pregunta": "¿Cómo priorizo cuando hay muchos riesgos?",
+                    "palabras_clave": [
+                        "priorizar",
+                        "muchos",
+                        "riesgos",
+                        "urgencia",
+                        "orden"
+                    ],
+                    "respuesta_corta": "Por nivel de riesgo (P×I), urgencia, población afectada y capacidad de respuesta.",
+                    "respuesta_larga": "Cuando hay múltiples riesgos, se prioriza con criterios objetivos: nivel de riesgo, urgencia, población afectada, vulnerabilidad de grupos, capacidad de respuesta y costo-beneficio.",
+                    "pasos": [
+                        "Listar todos los riesgos",
+                        "Calcular nivel de cada uno",
+                        "Ordenar de mayor a menor",
+                        "Aplicar criterios adicionales",
+                        "Definir plan de tratamiento por orden",
+                        "Documentar en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Matriz de priorización",
+                        "Plan de acción"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "evaluación",
+                        "priorización",
+                        "planificación"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nombre": "Tratamiento y Planes de Acción",
+            "preguntas": [
+                {
+                    "id": "P011",
+                    "pregunta": "¿Qué opciones tengo para tratar un riesgo?",
+                    "palabras_clave": [
+                        "tratamiento",
+                        "evitar",
+                        "mitigar",
+                        "transferir",
+                        "aceptar"
+                    ],
+                    "respuesta_corta": "Evitar, mitigar, transferir o aceptar.",
+                    "respuesta_larga": "Las cuatro estrategias de tratamiento son: Evitar (eliminar la actividad que genera el riesgo), Mitigar (reducir probabilidad o impacto), Transferir (compartir el riesgo, ej: seguros), Aceptar (asumir el riesgo porque el costo de tratarlo es mayor).",
+                    "pasos": [
+                        "Evaluar cada opción",
+                        "Elegir la más viable",
+                        "Documentar justificación",
+                        "Asignar responsable",
+                        "Definir plazo",
+                        "Monitorear"
+                    ],
+                    "documentos_relacionados": [
+                        "Guía de tratamiento",
+                        "Plantilla de plan"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "tratamiento",
+                        "planificación"
+                    ]
+                },
+                {
+                    "id": "P012",
+                    "pregunta": "¿Cómo decido entre mitigar, transferir o aceptar?",
+                    "palabras_clave": [
+                        "decisión",
+                        "mitigar",
+                        "transferir",
+                        "aceptar",
+                        "estrategia"
+                    ],
+                    "respuesta_corta": "Según el nivel de riesgo, los recursos disponibles y el contexto.",
+                    "respuesta_larga": "La decisión depende del nivel: Crítico → Evitar o mitigar urgentemente, Alto → Mitigar o transferir, Medio → Mitigar o aceptar con monitoreo, Bajo → Aceptar con monitoreo. Preguntas clave: ¿Podemos eliminar la amenaza? ¿Reducir probabilidad o impacto? ¿Hay quien comparta el riesgo? ¿El costo de tratarlo es mayor que el daño?",
+                    "pasos": [
+                        "Analizar cada opción",
+                        "Consultar con el equipo",
+                        "Decidir por consenso",
+                        "Documentar en la app",
+                        "Implementar y monitorear"
+                    ],
+                    "documentos_relacionados": [
+                        "Matriz de decisión"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "tratamiento",
+                        "decisión"
+                    ]
+                },
+                {
+                    "id": "P013",
+                    "pregunta": "¿Cómo elaboro un plan de acción?",
+                    "palabras_clave": [
+                        "plan",
+                        "acción",
+                        "SMART",
+                        "responsable",
+                        "plazo"
+                    ],
+                    "respuesta_corta": "Definiendo qué, quién, cuándo, cómo y con qué recursos.",
+                    "respuesta_larga": "Un plan de acción debe ser SMART: Específico, Medible, Alcanzable, Relevante, Temporal. Elementos: Qué (acción concreta), Quién (responsable), Cuándo (fecha inicio y fin), Cómo (metodología), Con qué (recursos y presupuesto), Verificación (evidencia de cumplimiento).",
+                    "pasos": [
+                        "Definir la acción",
+                        "Asignar responsable",
+                        "Establecer plazos",
+                        "Identificar recursos",
+                        "Definir indicadores",
+                        "Documentar en acciones",
+                        "Monitorear avance"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de plan de acción"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "tratamiento",
+                        "plan",
+                        "SMART"
+                    ]
+                },
+                {
+                    "id": "P014",
+                    "pregunta": "¿Cómo asigno responsables y plazos?",
+                    "palabras_clave": [
+                        "responsable",
+                        "plazo",
+                        "asignación",
+                        "tiempo"
+                    ],
+                    "respuesta_corta": "Según capacidades, disponibilidad y urgencia del riesgo.",
+                    "respuesta_larga": "La asignación debe ser clara y realista. Criterios: competencia (habilidades), disponibilidad (tiempo), autoridad (decisiones), cercanía (territorio). Plazos: Crítico 24-72 horas, Alto 1-2 semanas, Medio 1 mes, Bajo 3 meses.",
+                    "pasos": [
+                        "Identificar personas adecuadas",
+                        "Consultar disponibilidad",
+                        "Asignar formalmente",
+                        "Documentar en la app",
+                        "Verificar cumplimiento"
+                    ],
+                    "documentos_relacionados": [
+                        "Matriz de responsabilidades"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "tratamiento",
+                        "responsabilidad",
+                        "plazo"
+                    ]
+                },
+                {
+                    "id": "P015",
+                    "pregunta": "¿Cómo monitoreo la implementación?",
+                    "palabras_clave": [
+                        "monitoreo",
+                        "seguimiento",
+                        "implementación",
+                        "avance"
+                    ],
+                    "respuesta_corta": "Con revisiones periódicas, indicadores y actualización del estado.",
+                    "respuesta_larga": "El monitoreo asegura que el plan se ejecute. Frecuencia: Crítico diario, Alto semanal, Medio quincenal, Bajo mensual. Indicadores: % avance, acciones completadas, recursos utilizados, obstáculos encontrados.",
+                    "pasos": [
+                        "Definir frecuencia",
+                        "Crear checklist",
+                        "Revisar con responsable",
+                        "Actualizar estado en la app",
+                        "Ajustar si es necesario",
+                        "Documentar lecciones"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de monitoreo"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "tratamiento",
+                        "monitoreo",
+                        "seguimiento"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "nombre": "Preparación ante Desastres",
+            "preguntas": [
+                {
+                    "id": "P016",
+                    "pregunta": "¿Qué incluye un plan de preparación?",
+                    "palabras_clave": [
+                        "preparación",
+                        "plan",
+                        "recursos",
+                        "roles",
+                        "protocolos"
+                    ],
+                    "respuesta_corta": "Información, recursos, roles, protocolos y capacitación.",
+                    "respuesta_larga": "Un plan de preparación debe incluir: Información (mapas, directorios, datos históricos), Recursos (albergues, suministros, equipos), Roles (quién hace qué), Protocolos (alertas, evacuación, comunicación), Capacitación (formación periódica) y Simulacros (ejercicios prácticos).",
+                    "pasos": [
+                        "Evaluar capacidades actuales",
+                        "Identificar brechas",
+                        "Diseñar el plan",
+                        "Validar con la comunidad",
+                        "Documentar en la app",
+                        "Capacitar y practicar",
+                        "Actualizar cada año"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de plan de preparación"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "Marco de Sendai"
+                    ],
+                    "etiquetas": [
+                        "preparación",
+                        "planificación"
+                    ]
+                },
+                {
+                    "id": "P017",
+                    "pregunta": "¿Cómo hago un simulacro?",
+                    "palabras_clave": [
+                        "simulacro",
+                        "ejercicio",
+                        "práctica",
+                        "evacuación"
+                    ],
+                    "respuesta_corta": "Organizando un ejercicio práctico que simule una emergencia real.",
+                    "respuesta_larga": "El simulacro prueba la capacidad de respuesta. Tipos: De escritorio (discusión), De evacuación (movilización real), De comunicación (prueba de alertas). Pasos: definir escenario, designar observadores, notificar, ejecutar, evaluar, documentar lecciones, ajustar plan.",
+                    "pasos": [
+                        "Definir escenario y objetivos",
+                        "Designar observadores",
+                        "Notificar a participantes",
+                        "Ejecutar el simulacro",
+                        "Evaluar desempeño",
+                        "Documentar lecciones",
+                        "Ajustar el plan"
+                    ],
+                    "documentos_relacionados": [
+                        "Guía de simulacros",
+                        "Plantilla de evaluación"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "preparación",
+                        "simulacro",
+                        "práctica"
+                    ]
+                },
+                {
+                    "id": "P018",
+                    "pregunta": "¿Cómo actualizo el directorio de emergencia?",
+                    "palabras_clave": [
+                        "directorio",
+                        "contactos",
+                        "emergencia",
+                        "actualizar"
+                    ],
+                    "respuesta_corta": "Revisando y corrigiendo contactos cada 3 meses.",
+                    "respuesta_larga": "El directorio debe estar siempre actualizado. Contenido: comité de emergencia local, autoridades (gobierno, salud, bomberos), Cáritas diocesana y nacional, organizaciones aliadas, medios, transporte y logística.",
+                    "pasos": [
+                        "Revisar contactos existentes",
+                        "Llamar para verificar",
+                        "Actualizar cambios",
+                        "Añadir nuevos",
+                        "Distribuir copias",
+                        "Guardar en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de directorio"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "preparación",
+                        "directorio",
+                        "contactos"
+                    ]
+                },
+                {
+                    "id": "P019",
+                    "pregunta": "¿Qué información debo tener siempre disponible?",
+                    "palabras_clave": [
+                        "información",
+                        "disponible",
+                        "offline",
+                        "documentos"
+                    ],
+                    "respuesta_corta": "Mapas, directorios, planes, inventarios y datos históricos.",
+                    "respuesta_larga": "La información crítica debe estar accesible incluso sin internet. Documentos esenciales: mapa de riesgo comunitario, directorio de emergencia, plan de preparación, inventario de recursos, datos históricos, protocolos de actuación y contactos de Cáritas.",
+                    "pasos": [
+                        "Identificar información crítica",
+                        "Digitalizarla",
+                        "Guardarla en la app (offline)",
+                        "Hacer copias de seguridad",
+                        "Actualizar periódicamente"
+                    ],
+                    "documentos_relacionados": [
+                        "Biblioteca offline"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "preparación",
+                        "información",
+                        "offline"
+                    ]
+                },
+                {
+                    "id": "P020",
+                    "pregunta": "¿Cómo capacito a mi equipo?",
+                    "palabras_clave": [
+                        "capacitación",
+                        "formación",
+                        "equipo",
+                        "talleres"
+                    ],
+                    "respuesta_corta": "Con formación periódica, práctica y evaluación.",
+                    "respuesta_larga": "La capacitación es continua y participativa. Temas: conceptos de GRD, uso de la app, evaluación de riesgos, primeros auxilios, evacuación, comunicación de crisis. Métodos: talleres presenciales, cursos en la app, simulacros, mentoría.",
+                    "pasos": [
+                        "Evaluar necesidades",
+                        "Diseñar plan de formación",
+                        "Ejecutar talleres",
+                        "Evaluar aprendizaje",
+                        "Documentar en la app",
+                        "Repetir periódicamente"
+                    ],
+                    "documentos_relacionados": [
+                        "Módulo de formación"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "preparación",
+                        "capacitación",
+                        "formación"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "nombre": "Respuesta ante Emergencias",
+            "preguntas": [
+                {
+                    "id": "P021",
+                    "pregunta": "¿Qué hago en las primeras 24 horas?",
+                    "palabras_clave": [
+                        "primeras",
+                        "24 horas",
+                        "emergencia",
+                        "respuesta"
+                    ],
+                    "respuesta_corta": "Activar el comité, evaluar daños, asegurar personas y reportar.",
+                    "respuesta_larga": "Las primeras 24 horas son críticas. Acciones: activar comité de emergencia, verificar estado de personas, asegurar zonas peligrosas, evaluar daños preliminares, establecer comunicación, reportar a Cáritas diocesana, documentar todo.",
+                    "pasos": [
+                        "Reunir al comité",
+                        "Asignar roles",
+                        "Recorrer la zona",
+                        "Llenar evaluación rápida",
+                        "Enviar primer reporte",
+                        "Registrar en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Protocolo de primeras 24h"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "CI Toolkit"
+                    ],
+                    "etiquetas": [
+                        "respuesta",
+                        "emergencia",
+                        "primeras horas"
+                    ]
+                },
+                {
+                    "id": "P022",
+                    "pregunta": "¿Cómo hago una evaluación rápida de necesidades?",
+                    "palabras_clave": [
+                        "evaluación",
+                        "rápida",
+                        "necesidades",
+                        "ER"
+                    ],
+                    "respuesta_corta": "Con un formulario simplificado que capture lo esencial en poco tiempo.",
+                    "respuesta_larga": "La evaluación rápida (ER) es una herramienta ágil para las primeras horas. Campos esenciales: fecha y hora, zona afectada, tipo de evento, personas afectadas (fallecidos, heridos, desaparecidos, desplazados), daños en infraestructura, necesidades inmediatas (agua, alimento, refugio, salud), capacidad local de respuesta, acceso a la zona.",
+                    "pasos": [
+                        "Usar formulario móvil",
+                        "Recorrer zona afectada",
+                        "Entrevistar informantes clave",
+                        "Llenar datos",
+                        "Enviar a coordinación",
+                        "Documentar en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Formulario ER",
+                        "Guía de evaluación"
+                    ],
+                    "normativa": [
+                        "CI Toolkit",
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "respuesta",
+                        "evaluación",
+                        "necesidades"
+                    ]
+                },
+                {
+                    "id": "P023",
+                    "pregunta": "¿Cómo redacto un Sitrep diario?",
+                    "palabras_clave": [
+                        "Sitrep",
+                        "informe",
+                        "diario",
+                        "situación"
+                    ],
+                    "respuesta_corta": "Con estructura fija: situación, acciones, necesidades, próximos pasos.",
+                    "respuesta_larga": "El Sitrep (Situation Report) es el informe diario de situación. Estructura: Encabezado (fecha, hora, período), Situación (qué está pasando), Acciones realizadas (qué se ha hecho), Necesidades (qué se requiere), Próximos pasos (qué sigue), Anexos (fotos, mapas, datos).",
+                    "pasos": [
+                        "Recopilar información del día",
+                        "Redactar según estructura",
+                        "Revisar datos",
+                        "Enviar a coordinación",
+                        "Guardar en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de Sitrep"
+                    ],
+                    "normativa": [
+                        "CI Toolkit",
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "respuesta",
+                        "Sitrep",
+                        "informe"
+                    ]
+                },
+                {
+                    "id": "P024",
+                    "pregunta": "¿Cómo coordino con otras organizaciones?",
+                    "palabras_clave": [
+                        "coordinación",
+                        "organizaciones",
+                        "aliados",
+                        "comunicación"
+                    ],
+                    "respuesta_corta": "Con reuniones periódicas, información compartida y roles claros.",
+                    "respuesta_larga": "La coordinación evita duplicación y mejora la respuesta. Espacios: reuniones del comité local, mesas sectoriales (salud, agua, refugio), coordinación con Cáritas diocesana, enlace con autoridades, contacto con otras ONG.",
+                    "pasos": [
+                        "Identificar actores clave",
+                        "Establecer canales de comunicación",
+                        "Definir roles y responsabilidades",
+                        "Compartir información",
+                        "Documentar acuerdos",
+                        "Revisar periódicamente"
+                    ],
+                    "documentos_relacionados": [
+                        "Mapa de actores",
+                        "Acuerdos"
+                    ],
+                    "normativa": [
+                        "CI Toolkit",
+                        "Esfera"
+                    ],
+                    "etiquetas": [
+                        "respuesta",
+                        "coordinación",
+                        "aliados"
+                    ]
+                },
+                {
+                    "id": "P025",
+                    "pregunta": "¿Cómo reporto a Cáritas nacional e internacional?",
+                    "palabras_clave": [
+                        "reporte",
+                        "Cáritas",
+                        "nacional",
+                        "internacional",
+                        "informe"
+                    ],
+                    "respuesta_corta": "Con los formatos estandarizados: Briefing, Sitrep y Statement of accounts.",
+                    "respuesta_larga": "Cáritas tiene formatos específicos: Briefing (resumen de actividades y contexto), Sitrep (informe diario/semanal), Statement of accounts (reporte financiero), Informe narrativo (análisis cualitativo).",
+                    "pasos": [
+                        "Recopilar datos del período",
+                        "Usar plantillas de Cáritas",
+                        "Exportar desde la app (CSV/JSON)",
+                        "Revisar calidad",
+                        "Enviar por canales establecidos",
+                        "Guardar copia"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantillas CI",
+                        "Guía de reporte"
+                    ],
+                    "normativa": [
+                        "CI Toolkit",
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "respuesta",
+                        "reporte",
+                        "Cáritas"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "nombre": "Recuperación y Aprendizaje",
+            "preguntas": [
+                {
+                    "id": "P026",
+                    "pregunta": "¿Cómo evalúo los daños después de un desastre?",
+                    "palabras_clave": [
+                        "evaluación",
+                        "daños",
+                        "desastre",
+                        "EDAN"
+                    ],
+                    "respuesta_corta": "Con evaluación sectorial: personas, infraestructura, medios de vida, ambiente.",
+                    "respuesta_larga": "La evaluación de daños (EDAN) se hace por sectores: Personas (fallecidos, heridos, desplazados, vulnerables), Infraestructura (vivienda, salud, educación, agua, vías), Medios de vida (agricultura, ganadería, comercio, empleo), Ambiente (daños ecológicos, contaminación).",
+                    "pasos": [
+                        "Formar equipos sectoriales",
+                        "Usar formularios específicos",
+                        "Recorrer zona afectada",
+                        "Cuantificar daños",
+                        "Estimar costos",
+                        "Consolidar información",
+                        "Documentar en la app"
+                    ],
+                    "documentos_relacionados": [
+                        "Formularios EDAN"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "Esfera"
+                    ],
+                    "etiquetas": [
+                        "recuperación",
+                        "evaluación",
+                        "daños"
+                    ]
+                },
+                {
+                    "id": "P027",
+                    "pregunta": "¿Cómo elaboro un plan de recuperación?",
+                    "palabras_clave": [
+                        "recuperación",
+                        "plan",
+                        "reconstrucción",
+                        "fases"
+                    ],
+                    "respuesta_corta": "Definiendo acciones a corto, mediano y largo plazo.",
+                    "respuesta_larga": "La recuperación es un proceso gradual. Fases: Corto plazo (0-3 meses): asistencia humanitaria, refugio, salud. Mediano plazo (3-12 meses): reconstrucción, medios de vida. Largo plazo (1-5 años): desarrollo, resiliencia, prevención.",
+                    "pasos": [
+                        "Evaluar daños y necesidades",
+                        "Definir prioridades",
+                        "Diseñar acciones por fase",
+                        "Asignar recursos",
+                        "Establecer indicadores",
+                        "Documentar en la app",
+                        "Monitorear implementación"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de plan de recuperación"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "Esfera"
+                    ],
+                    "etiquetas": [
+                        "recuperación",
+                        "plan",
+                        "reconstrucción"
+                    ]
+                },
+                {
+                    "id": "P028",
+                    "pregunta": "¿Qué lecciones debo documentar?",
+                    "palabras_clave": [
+                        "lecciones",
+                        "aprendizaje",
+                        "documentar",
+                        "mejora"
+                    ],
+                    "respuesta_corta": "Qué funcionó, qué falló, qué mejorar y qué replicar.",
+                    "respuesta_larga": "La documentación de lecciones es clave para aprender. Preguntas guía: ¿Qué funcionó bien? ¿Qué falló? ¿Qué faltó? ¿Qué se puede mejorar? ¿Qué se puede replicar? ¿Qué se debe evitar?",
+                    "pasos": [
+                        "Reunir al equipo",
+                        "Realizar taller de lecciones aprendidas",
+                        "Documentar hallazgos",
+                        "Definir acciones de mejora",
+                        "Actualizar planes",
+                        "Compartir con Cáritas"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de lecciones aprendidas"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas",
+                        "CI Toolkit"
+                    ],
+                    "etiquetas": [
+                        "recuperación",
+                        "lecciones",
+                        "aprendizaje"
+                    ]
+                },
+                {
+                    "id": "P029",
+                    "pregunta": "¿Cómo cierro un caso de riesgo?",
+                    "palabras_clave": [
+                        "cierre",
+                        "caso",
+                        "riesgo",
+                        "finalizar"
+                    ],
+                    "respuesta_corta": "Verificando que el riesgo ya no existe o está controlado.",
+                    "respuesta_larga": "El cierre requiere evidencia. Criterios: la amenaza ya no está presente, o el riesgo está controlado a nivel aceptable, o se ha transferido a otra instancia.",
+                    "pasos": [
+                        "Verificar estado del riesgo",
+                        "Revisar acciones completadas",
+                        "Documentar evidencia",
+                        "Aprobar cierre",
+                        "Actualizar estado en la app",
+                        "Archivar documentación"
+                    ],
+                    "documentos_relacionados": [
+                        "Formulario de cierre"
+                    ],
+                    "normativa": [
+                        "ISO 31000"
+                    ],
+                    "etiquetas": [
+                        "recuperación",
+                        "cierre",
+                        "riesgo"
+                    ]
+                },
+                {
+                    "id": "P030",
+                    "pregunta": "¿Cómo comparto buenas prácticas?",
+                    "palabras_clave": [
+                        "buenas prácticas",
+                        "compartir",
+                        "sistematizar",
+                        "difundir"
+                    ],
+                    "respuesta_corta": "Documentando, sistematizando y difundiendo.",
+                    "respuesta_larga": "Las buenas prácticas se comparten para multiplicar el impacto. Métodos: fichas de sistematización, talleres de intercambio, publicaciones, videos, presentaciones.",
+                    "pasos": [
+                        "Identificar práctica exitosa",
+                        "Documentar paso a paso",
+                        "Analizar factores de éxito",
+                        "Sistematizar en ficha",
+                        "Compartir con Cáritas",
+                        "Difundir en redes"
+                    ],
+                    "documentos_relacionados": [
+                        "Plantilla de sistematización"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "recuperación",
+                        "buenas prácticas",
+                        "sistematización"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "nombre": "Cumplimiento y Protección de Datos",
+            "preguntas": [
+                {
+                    "id": "P031",
+                    "pregunta": "¿Qué dice la Ley 149/2022 sobre mis datos?",
+                    "palabras_clave": [
+                        "Ley 149",
+                        "datos",
+                        "protección",
+                        "derechos"
+                    ],
+                    "respuesta_corta": "Protege tus datos personales y te da derechos sobre ellos.",
+                    "respuesta_larga": "La Ley 149/2022 establece derechos: Acceso (saber qué datos tienen), Rectificación (corregir), Cancelación (eliminar), Oposición (oponerte al tratamiento). Obligaciones del responsable: consentimiento informado, proteger datos, notificar brechas, conservar máximo 5 años.",
+                    "pasos": [
+                        "Leer la ley",
+                        "Informar a usuarios",
+                        "Obtener consentimiento",
+                        "Proteger datos",
+                        "Permitir eliminación",
+                        "Documentar"
+                    ],
+                    "documentos_relacionados": [
+                        "Ley 149/2022",
+                        "Política de privacidad"
+                    ],
+                    "normativa": [
+                        "Ley 149/2022"
+                    ],
+                    "etiquetas": [
+                        "cumplimiento",
+                        "datos",
+                        "legal"
+                    ]
+                },
+                {
+                    "id": "P032",
+                    "pregunta": "¿Cómo obtengo consentimiento informado?",
+                    "palabras_clave": [
+                        "consentimiento",
+                        "informado",
+                        "permiso",
+                        "datos"
+                    ],
+                    "respuesta_corta": "Explicando claramente qué datos, para qué y por cuánto tiempo.",
+                    "respuesta_larga": "El consentimiento debe ser libre, informado y específico. Elementos: qué datos se recogen, para qué se usan, con quién se comparten, por cuánto tiempo, cómo se protegen, cómo ejercer derechos.",
+                    "pasos": [
+                        "Redactar aviso de privacidad",
+                        "Explicar en lenguaje claro",
+                        "Pedir consentimiento",
+                        "Registrar aceptación",
+                        "Guardar evidencia",
+                        "Respetar decisión"
+                    ],
+                    "documentos_relacionados": [
+                        "Modelo de consentimiento"
+                    ],
+                    "normativa": [
+                        "Ley 149/2022"
+                    ],
+                    "etiquetas": [
+                        "cumplimiento",
+                        "consentimiento",
+                        "datos"
+                    ]
+                },
+                {
+                    "id": "P033",
+                    "pregunta": "¿Cómo protejo datos de beneficiarios?",
+                    "palabras_clave": [
+                        "protección",
+                        "datos",
+                        "beneficiarios",
+                        "seguridad"
+                    ],
+                    "respuesta_corta": "Con medidas técnicas, organizativas y de concienciación.",
+                    "respuesta_larga": "La protección es integral. Medidas técnicas: cifrado, contraseñas, copias de seguridad, control de acceso. Medidas organizativas: políticas, roles definidos, capacitación, auditoría.",
+                    "pasos": [
+                        "Identificar datos sensibles",
+                        "Aplicar cifrado",
+                        "Restringir acceso",
+                        "Capacitar al personal",
+                        "Auditar periódicamente",
+                        "Documentar"
+                    ],
+                    "documentos_relacionados": [
+                        "Política de seguridad"
+                    ],
+                    "normativa": [
+                        "Ley 149/2022",
+                        "Decreto-Ley 370/2018"
+                    ],
+                    "etiquetas": [
+                        "cumplimiento",
+                        "seguridad",
+                        "datos"
+                    ]
+                },
+                {
+                    "id": "P034",
+                    "pregunta": "¿Cómo elimino datos que ya no necesito?",
+                    "palabras_clave": [
+                        "eliminar",
+                        "datos",
+                        "borrar",
+                        "cancelación"
+                    ],
+                    "respuesta_corta": "Con el botón Eliminar todos mis datos o borrado selectivo.",
+                    "respuesta_larga": "La eliminación debe ser segura y verificable. Métodos: eliminación total (borra todo), eliminación selectiva (por registro), eliminación automática (por antigüedad).",
+                    "pasos": [
+                        "Identificar datos a eliminar",
+                        "Verificar obligaciones legales",
+                        "Ejecutar eliminación",
+                        "Confirmar borrado",
+                        "Documentar",
+                        "Verificar"
+                    ],
+                    "documentos_relacionados": [
+                        "Función de eliminación en la app"
+                    ],
+                    "normativa": [
+                        "Ley 149/2022"
+                    ],
+                    "etiquetas": [
+                        "cumplimiento",
+                        "eliminación",
+                        "datos"
+                    ]
+                },
+                {
+                    "id": "P035",
+                    "pregunta": "¿Qué es el Decreto-Ley 370/2018?",
+                    "palabras_clave": [
+                        "Decreto-Ley 370",
+                        "ciberseguridad",
+                        "seguridad",
+                        "legal"
+                    ],
+                    "respuesta_corta": "La ley de ciberseguridad de Cuba.",
+                    "respuesta_larga": "El Decreto-Ley 370/2018 establece el marco de ciberseguridad. Aplica a personas naturales y jurídicas, formas sin ánimo de lucro y entidades estatales. Obligaciones: gestión de seguridad, protección de información, respuesta a incidentes, notificación de brechas.",
+                    "pasos": [
+                        "Conocer la ley",
+                        "Implementar medidas",
+                        "Documentar políticas",
+                        "Capacitar",
+                        "Auditar",
+                        "Reportar incidentes"
+                    ],
+                    "documentos_relacionados": [
+                        "Decreto-Ley 370/2018"
+                    ],
+                    "normativa": [
+                        "Decreto-Ley 370/2018"
+                    ],
+                    "etiquetas": [
+                        "cumplimiento",
+                        "ciberseguridad",
+                        "legal"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "nombre": "Uso de la Herramienta",
+            "preguntas": [
+                {
+                    "id": "P036",
+                    "pregunta": "¿Cómo registro un riesgo?",
+                    "palabras_clave": [
+                        "registrar",
+                        "riesgo",
+                        "formulario",
+                        "app"
+                    ],
+                    "respuesta_corta": "Con el formulario del módulo Riesgos.",
+                    "respuesta_larga": "El registro es sencillo. Pasos: abrir módulo Riesgos, tocar Nuevo riesgo, llenar campos (título, descripción, categoría, amenaza, vulnerabilidad, capacidad, probabilidad, impacto, responsable, tratamiento), guardar y verificar clasificación automática.",
+                    "pasos": [
+                        "Abrir módulo Riesgos",
+                        "Tocar Nuevo riesgo",
+                        "Llenar campos",
+                        "Guardar",
+                        "Verificar clasificación automática"
+                    ],
+                    "documentos_relacionados": [
+                        "Manual de usuario"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "app",
+                        "uso",
+                        "registro"
+                    ]
+                },
+                {
+                    "id": "P037",
+                    "pregunta": "¿Cómo exporto un informe?",
+                    "palabras_clave": [
+                        "exportar",
+                        "informe",
+                        "CSV",
+                        "JSON",
+                        "reporte"
+                    ],
+                    "respuesta_corta": "Desde el módulo Dashboard, con los botones de exportación.",
+                    "respuesta_larga": "Hay varios formatos: CSV Briefing, CSV Statement of accounts, JSON para agente IA, JSON respaldo completo, PDF de auditoría. Pasos: ir a Dashboard, seleccionar período, elegir formato, tocar exportar, guardar archivo, compartir.",
+                    "pasos": [
+                        "Ir a Dashboard",
+                        "Seleccionar período",
+                        "Elegir formato",
+                        "Tocar exportar",
+                        "Guardar archivo",
+                        "Compartir"
+                    ],
+                    "documentos_relacionados": [
+                        "Manual de exportación"
+                    ],
+                    "normativa": [
+                        "CI Toolkit"
+                    ],
+                    "etiquetas": [
+                        "app",
+                        "exportación",
+                        "informe"
+                    ]
+                },
+                {
+                    "id": "P038",
+                    "pregunta": "¿Cómo hago una copia de seguridad?",
+                    "palabras_clave": [
+                        "copia",
+                        "seguridad",
+                        "respaldo",
+                        "backup"
+                    ],
+                    "respuesta_corta": "Exportando el JSON de respaldo completo.",
+                    "respuesta_larga": "La copia de seguridad protege tus datos. Pasos: ir a Configuración, tocar Crear respaldo, guardar archivo JSON, enviar a lugar seguro, repetir semanalmente.",
+                    "pasos": [
+                        "Ir a Configuración",
+                        "Tocar Crear respaldo",
+                        "Guardar archivo JSON",
+                        "Enviar a lugar seguro",
+                        "Repetir semanalmente"
+                    ],
+                    "documentos_relacionados": [
+                        "Manual de respaldo"
+                    ],
+                    "normativa": [
+                        "Ley 149/2022"
+                    ],
+                    "etiquetas": [
+                        "app",
+                        "respaldo",
+                        "seguridad"
+                    ]
+                },
+                {
+                    "id": "P039",
+                    "pregunta": "¿Cómo trabajo sin internet?",
+                    "palabras_clave": [
+                        "offline",
+                        "sin internet",
+                        "trabajo",
+                        "conexión"
+                    ],
+                    "respuesta_corta": "La app funciona 100% offline una vez instalada.",
+                    "respuesta_larga": "El modo offline es automático. Características: todos los datos se guardan localmente, la biblioteca está disponible, el motor de reglas responde, la IA local (si está instalada) funciona, se sincroniza cuando vuelve la conexión.",
+                    "pasos": [
+                        "Instalar la app",
+                        "Descargar biblioteca",
+                        "Usar normalmente",
+                        "Exportar cuando haya conexión",
+                        "Sincronizar"
+                    ],
+                    "documentos_relacionados": [
+                        "Manual offline"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "app",
+                        "offline",
+                        "uso"
+                    ]
+                },
+                {
+                    "id": "P040",
+                    "pregunta": "¿Cómo consulto la biblioteca?",
+                    "palabras_clave": [
+                        "biblioteca",
+                        "consultar",
+                        "buscar",
+                        "documentos"
+                    ],
+                    "respuesta_corta": "Desde el módulo Biblioteca, con buscador por palabras clave.",
+                    "respuesta_larga": "La biblioteca es tu centro de consulta. Pasos: abrir Biblioteca, escribir palabra clave, ver resultados, abrir documento, guardar favoritos, compartir.",
+                    "pasos": [
+                        "Abrir Biblioteca",
+                        "Escribir palabra clave",
+                        "Ver resultados",
+                        "Abrir documento",
+                        "Guardar favoritos",
+                        "Compartir"
+                    ],
+                    "documentos_relacionados": [
+                        "Manual de biblioteca"
+                    ],
+                    "normativa": [
+                        "GRD Cáritas"
+                    ],
+                    "etiquetas": [
+                        "app",
+                        "biblioteca",
+                        "consulta"
+                    ]
+                }
+            ]
+        }
+    ]
+}

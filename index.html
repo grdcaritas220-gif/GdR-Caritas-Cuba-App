@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GdR Cáritas Cuba - Consultas</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a5490">
+    <link rel="icon" href="iconos/icono-192.png">
+</head>
+
+<body>
+    <header>
+        <h1>📚 Consultas GRD</h1>
+        <p>Gestión de Riesgo de Desastres - Cáritas Cuba</p>
+    </header>
+
+    <main>
+        <section class="buscador">
+            <input type="text" id="input-busqueda" placeholder="Escribe tu pregunta... ej: cómo identifico un riesgo"
+                autocomplete="off">
+            <button id="btn-buscar">Buscar</button>
+        </section>
+
+        <section id="resultados" class="resultados">
+            <p class="mensaje-inicial">Escribe una pregunta o explor las categorías</p>
+        </section>
+
+        <section class="bloques">
+            <h2>Explorar por categoría</h2>
+            <div id="lista-bloques" class="lista-bloques"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Cáritas Cuba · GRD · Laudato si' · Ley 149/2022</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Registrar el Service Worker para funcionar offline
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then((registro) => {
+                        console.log('✅ Service Worker registrado:', registro.scope);
+                    })
+                    .catch((error) => {
+                        console.error('❌ Error al registrar Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
