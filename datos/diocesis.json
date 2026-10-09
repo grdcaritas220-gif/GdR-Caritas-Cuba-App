@@ -1,0 +1,99 @@
+{
+    "version": "1.0",
+    "fecha": "2026-10-09",
+    "pais": "Cuba",
+    "organizacion": "Cáritas Cuba",
+    "total": 11,
+    "caritas_locales": [
+        {
+            "id": "pinar-del-rio",
+            "nombre": "Cáritas Pinar del Río",
+            "zona": "Occidente",
+            "provincias": [
+                "Pinar del Río"
+            ]
+        },
+        {
+            "id": "habana",
+            "nombre": "Cáritas Habana",
+            "zona": "Occidente",
+            "provincias": [
+                "La Habana",
+                "Mayabeque",
+                "Artemisa"
+            ]
+        },
+        {
+            "id": "matanzas",
+            "nombre": "Cáritas Matanzas",
+            "zona": "Occidente",
+            "provincias": [
+                "Matanzas"
+            ]
+        },
+        {
+            "id": "cienfuegos",
+            "nombre": "Cáritas Cienfuegos",
+            "zona": "Centro",
+            "provincias": [
+                "Cienfuegos"
+            ]
+        },
+        {
+            "id": "santa-clara",
+            "nombre": "Cáritas Santa Clara",
+            "zona": "Centro",
+            "provincias": [
+                "Villa Clara"
+            ]
+        },
+        {
+            "id": "ciego-de-avila",
+            "nombre": "Cáritas Ciego de Ávila",
+            "zona": "Centro",
+            "provincias": [
+                "Ciego de Ávila"
+            ]
+        },
+        {
+            "id": "camaguey",
+            "nombre": "Cáritas Camagüey",
+            "zona": "Centro-Oriente",
+            "provincias": [
+                "Camagüey"
+            ]
+        },
+        {
+            "id": "holguin",
+            "nombre": "Cáritas Holguín",
+            "zona": "Oriente",
+            "provincias": [
+                "Holguín"
+            ]
+        },
+        {
+            "id": "bayamo-manzanillo",
+            "nombre": "Cáritas Bayamo-Manzanillo",
+            "zona": "Oriente",
+            "provincias": [
+                "Granma"
+            ]
+        },
+        {
+            "id": "santiago-de-cuba",
+            "nombre": "Cáritas Santiago de Cuba",
+            "zona": "Oriente",
+            "provincias": [
+                "Santiago de Cuba"
+            ]
+        },
+        {
+            "id": "guantanamo-baracoa",
+            "nombre": "Cáritas Guantánamo-Baracoa",
+            "zona": "Oriente",
+            "provincias": [
+                "Guantánamo"
+            ]
+        }
+    ]
+}

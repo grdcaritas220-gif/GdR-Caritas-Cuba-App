@@ -18,6 +18,14 @@
     </header>
 
     <main>
+        <section class="accesos-rapidos">
+            <button class="btn-acceso btn-riesgos" onclick="mostrarListaRiesgos()">
+                📋 Riesgos
+            </button>
+            <button class="btn-acceso btn-consultas" onclick="volverInicio()">
+                📚 Consultas
+            </button>
+        </section>
         <section class="buscador">
             <input type="text" id="input-busqueda" placeholder="Escribe tu pregunta... ej: cómo identifico un riesgo"
                 autocomplete="off">
@@ -38,6 +46,7 @@
         <p>Cáritas Cuba · GRD · Laudato si' · Ley 149/2022</p>
     </footer>
 
+    <script src="js/riesgos.js"></script>
     <script src="js/app.js"></script>
     <script>
         // Registrar el Service Worker para funcionar offline
