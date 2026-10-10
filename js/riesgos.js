@@ -512,6 +512,76 @@ async function exportarJSON() {
   URL.revokeObjectURL(url);
 }
 
+// ===== 17. ABRIR GUÍA DE USO =====
+async function abrirGuia() {
+  const contenedor = document.getElementById('resultados');
+
+  try {
+    const respuesta = await fetch('./datos/guia-uso.md');
+    const texto = await respuesta.text();
+
+    // Convertir Markdown a HTML básico
+    const html = convertirMarkdownAHTML(texto);
+
+    contenedor.innerHTML = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <div class="guia-contenido">
+        ${html}
+      </div>
+    `;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (error) {
+    contenedor.innerHTML = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <p>Error al cargar la guía: ${error.message}</p>
+    `;
+  }
+}
+
+// ===== 18. CONVERTIR MARKDOWN A HTML =====
+function convertirMarkdownAHTML(md) {
+  let html = md;
+
+  // Encabezados
+  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+  // Negrita
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  // Cursiva
+  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+  // Código en línea
+  html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+  // Enlaces
+  html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+  // Listas
+  html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+  // Saltos de línea
+  html = html.replace(/\n\n/g, '</p><p>');
+  html = html.replace(/\n/g, '<br>');
+
+  // Párrafos
+  html = '<p>' + html + '</p>';
+
+  // Limpiar
+  html = html.replace(/<p><\/p>/g, '');
+  html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+  html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+  html = html.replace(/<p>(<ul>)/g, '$1');
+  html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+
+  return html;
+}
+
 // ===== 16. INICIALIZAR AL CARGAR LA PÁGINA =====
 document.addEventListener('DOMContentLoaded', async () => {
   try {

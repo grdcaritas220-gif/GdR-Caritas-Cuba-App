@@ -201,4 +201,424 @@ footer {
     text-align: center;
     padding: 12px;
     font-size: 0.8rem;
+
+    /* ===== ACCESOS RÁPIDOS ===== */
+    .accesos-rapidos {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn-acceso {
+        flex: 1;
+        min-width: 150px;
+        padding: 14px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-acceso:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-riesgos {
+        background: #1a5490;
+        color: white;
+    }
+
+    .btn-consultas {
+        background: white;
+        color: #1a5490;
+        border: 2px solid #1a5490;
+    }
+
+    /* ===== FORMULARIO DE RIESGO ===== */
+    .formulario-riesgo {
+        background: white;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .formulario-riesgo h2 {
+        color: #1a5490;
+        margin-bottom: 20px;
+    }
+
+    .campo {
+        margin-bottom: 16px;
+        flex: 1;
+    }
+
+    .campo label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #333;
+        font-size: 0.9rem;
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        outline: none;
+        font-family: inherit;
+        transition: border-color 0.15s;
+    }
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+        border-color: #1a5490;
+    }
+
+    .campo textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+
+    .campo-doble {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .nivel-preview {
+        background: #f4f6f8;
+        padding: 12px 16px;
+        border-radius: 6px;
+        margin-bottom: 16px;
+        text-align: center;
+        font-size: 1.05rem;
+    }
+
+    .nivel-verde {
+        color: #16a34a;
+    }
+
+    .nivel-amarillo {
+        color: #eab308;
+    }
+
+    .nivel-naranja {
+        color: #ea580c;
+    }
+
+    .nivel-rojo {
+        color: #dc2626;
+        font-weight: bold;
+    }
+
+    .acciones-form {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    .btn-cancelar,
+    .btn-guardar {
+        padding: 12px 24px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .btn-cancelar {
+        background: #e5e7eb;
+        color: #333;
+    }
+
+    .btn-cancelar:hover {
+        background: #d1d5db;
+    }
+
+    .btn-guardar {
+        background: #1a5490;
+        color: white;
+    }
+
+    .btn-guardar:hover {
+        background: #143f6e;
+    }
+
+    /* ===== LISTA DE RIESGOS ===== */
+    .lista-riesgos {
+        margin-top: 10px;
+    }
+
+    .cabecera-lista {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .cabecera-lista h2 {
+        color: #1a5490;
+    }
+
+    .sin-riesgos {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .sin-riesgos p {
+        color: #888;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    .tarjeta-riesgo {
+        background: white;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid #ccc;
+    }
+
+    .nivel-borde-verde {
+        border-left-color: #16a34a;
+    }
+
+    .nivel-borde-amarillo {
+        border-left-color: #eab308;
+    }
+
+    .nivel-borde-naranja {
+        border-left-color: #ea580c;
+    }
+
+    .nivel-borde-rojo {
+        border-left-color: #dc2626;
+    }
+
+    .tarjeta-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+    }
+
+    .tarjeta-header h3 {
+        color: #1a5490;
+        font-size: 1.1rem;
+        flex: 1;
+    }
+
+    .badge-verde,
+    .badge-amarillo,
+    .badge-naranja,
+    .badge-rojo {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: white;
+        white-space: nowrap;
+    }
+
+    .badge-verde {
+        background: #16a34a;
+    }
+
+    .badge-amarillo {
+        background: #eab308;
+    }
+
+    .badge-naranja {
+        background: #ea580c;
+    }
+
+    .badge-rojo {
+        background: #dc2626;
+    }
+
+    .tarjeta-riesgo .meta {
+        color: #666;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+
+    .descripcion-corta {
+        color: #444;
+        font-size: 0.92rem;
+        margin-bottom: 12px;
+    }
+
+    .tarjeta-acciones {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn-mini {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-ver {
+        background: #e0e7ff;
+        color: #1a5490;
+    }
+
+    .btn-ver:hover {
+        background: #c7d2fe;
+    }
+
+    .btn-eliminar {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .btn-eliminar:hover {
+        background: #fecaca;
+    }
+
+    /* ===== DETALLE DEL RIESGO ===== */
+    .detalle-riesgo {
+        background: white;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .detalle-riesgo h2 {
+        color: #1a5490;
+        margin-bottom: 8px;
+    }
+
+    .detalle-riesgo h3 {
+        color: #333;
+        font-size: 1rem;
+        margin-top: 20px;
+        margin-bottom: 6px;
+    }
+
+    .detalle-riesgo p {
+        color: #444;
+        margin-bottom: 8px;
+    }
+
+    /* ===== RESPONSIVE MÓVIL ===== */
+    @media (max-width: 600px) {
+        .campo-doble {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .accesos-rapidos {
+            flex-direction: column;
+        }
+
+        .cabecera-lista {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .acciones-form {
+            flex-direction: column-reverse;
+        }
+
+        .btn-cancelar,
+        .btn-guardar {
+            width: 100%;
+        }
+    }
+}
+
+
+/* ===== BOTÓN GUÍA ===== */
+.btn-guia {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-guia:hover {
+    background: #15803d;
+}
+
+/* ===== CONTENIDO DE LA GUÍA ===== */
+.guia-contenido {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.7;
+}
+
+.guia-contenido h1 {
+    color: #1a5490;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #1a5490;
+    padding-bottom: 8px;
+}
+
+.guia-contenido h2 {
+    color: #1a5490;
+    font-size: 1.3rem;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.guia-contenido h3 {
+    color: #333;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.guia-contenido p {
+    margin-bottom: 12px;
+}
+
+.guia-contenido ul {
+    margin-left: 24px;
+    margin-bottom: 12px;
+}
+
+.guia-contenido li {
+    margin-bottom: 6px;
+}
+
+.guia-contenido code {
+    background: #f4f6f8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #dc2626;
+}
+
+.guia-contenido strong {
+    color: #1a5490;
+}
+
+@media (max-width: 600px) {
+    .guia-contenido {
+        padding: 16px;
+    }
 }
