@@ -4,482 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1e40af">
+    <title>GdR Cáritas Cuba - Consultas</title>
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="manifest" href="manifest.json">
-    <title>Bitácora Cuba Offline</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#1a5490">
+    <link rel="icon" href="iconos/icono-192.png">
 </head>
 
 <body>
-    <!-- PANTALLA DE CONTRASEÑA -->
-    <div id="pantallaLogin" class="login-overlay">
-        <div class="login-contenedor">
-            <div class="login-icono">🔒</div>
-            <h2>Bitácora Cuba</h2>
-            <p class="login-subtitulo">Ingresa tu contraseña para continuar</p>
-            <input type="password" id="inputPassword" placeholder="Contraseña" autocomplete="off">
-            <button class="boton-principal" id="btnLogin">Entrar</button>
-            <p class="login-error" id="loginError"></p>
-        </div>
-    </div>
-
-    <header class="app-header">
-        <h1>Bitácora Cuba</h1>
-        <span class="badge-offline" id="estadoRed">● Offline</span>
+    <header>
+        <h1>📚 Consultas GRD</h1>
+        <p>Gestión de Riesgo de Desastres - Cáritas Cuba</p>
     </header>
 
-    <main class="app-main">
-        <!-- SECCIÓN HOY -->
-        <section id="seccion-hoy" class="seccion activa">
-            <h2>Hoy</h2>
-            <p class="subtitulo">Registro diario de actividades</p>
-
-            <div class="tarjeta-resumen">
-                <div class="resumen-item">
-                    <span class="resumen-numero" id="contadorTerreno">0</span>
-                    <span class="resumen-etiqueta">Días de terreno</span>
-                </div>
-                <div class="resumen-item">
-                    <span class="resumen-numero" id="contadorRemoto">0</span>
-                    <span class="resumen-etiqueta">Días remotos</span>
-                </div>
-                <div class="resumen-item">
-                    <span class="resumen-numero" id="contadorTotal">0/120</span>
-                    <span class="resumen-etiqueta">Días totales</span>
-                </div>
-            </div>
-
-            <button class="boton-principal" id="btnNuevaActividad">+ Registrar actividad de hoy</button>
-
-            <div id="listaActividades" class="lista-vacia">
-                <p>Aún no hay actividades registradas.</p>
-            </div>
+    <main>
+        <section class="accesos-rapidos">
+            <button class="btn-acceso btn-riesgos" onclick="mostrarListaRiesgos()">
+                📋 Riesgos
+            </button>
+            <button class="btn-acceso btn-consultas" onclick="volverInicio()">
+                📚 Consultas
+            </button>
+            <button class="btn-acceso btn-guia" onclick="abrirGuia()">
+                📖 Guía de uso
+            </button>
+        </section>
+        <section class="buscador">
+            <input type="text" id="input-busqueda" placeholder="Escribe tu pregunta... ej: cómo identifico un riesgo"
+                autocomplete="off">
+            <button id="btn-buscar">Buscar</button>
         </section>
 
-        <!-- SECCIÓN GASTOS -->
-        <section id="seccion-gastos" class="seccion">
-            <h2>Gastos</h2>
-            <p class="subtitulo">Control de gastos y comprobantes</p>
-
-            <div class="tarjeta-total-eur">
-                <span class="total-etiqueta">Total en euros</span>
-                <span class="total-numero" id="totalEUR">€ 0.00</span>
-            </div>
-
-            <div class="tarjeta-desglose">
-                <div class="desglose-item">
-                    <span class="desglose-moneda">EUR</span>
-                    <span class="desglose-valor" id="totalMonedaEUR">0.00</span>
-                </div>
-                <div class="desglose-item">
-                    <span class="desglose-moneda">USD</span>
-                    <span class="desglose-valor" id="totalMonedaUSD">0.00</span>
-                </div>
-                <div class="desglose-item">
-                    <span class="desglose-moneda">MLC</span>
-                    <span class="desglose-valor" id="totalMonedaMLC">0.00</span>
-                </div>
-                <div class="desglose-item">
-                    <span class="desglose-moneda">CUP</span>
-                    <span class="desglose-valor" id="totalMonedaCUP">0.00</span>
-                </div>
-                <div class="desglose-item">
-                    <span class="desglose-moneda">COP</span>
-                    <span class="desglose-valor" id="totalMonedaCOP">0.00</span>
-                </div>
-
-                <button class="boton-principal" id="btnNuevoGasto">+ Nuevo gasto</button>
-
-                <div id="listaGastos" class="lista-vacia">
-                    <p>No hay gastos registrados.</p>
-                </div>
+        <section id="resultados" class="resultados">
+            <p class="mensaje-inicial">Escribe una pregunta o explor las categorías</p>
         </section>
 
-        <!-- SECCIÓN VIAJES -->
-        <section id="seccion-viajes" class="seccion">
-            <h2>Viajes</h2>
-            <p class="subtitulo">Itinerarios y condiciones del viaje</p>
-            <button class="boton-principal">+ Nuevo viaje</button>
-            <div class="lista-vacia">
-                <p>No hay viajes registrados.</p>
-            </div>
-        </section>
-
-        <!-- SECCIÓN REPORTES -->
-        <section id="seccion-reportes" class="seccion">
-            <h2>Reportes</h2>
-            <p class="subtitulo">Avance, cortes y exportación</p>
-
-            <!-- TARJETA DE AVANCE GENERAL -->
-            <div class="tarjeta-avance">
-                <div class="avance-titulo">AVANCE GENERAL</div>
-                <div class="avance-numero">
-                    <span id="reporteDiasTrabajados">0</span> / 120 días
-                </div>
-                <div class="barra-progreso">
-                    <div class="barra-progreso-relleno" id="barraAvance" style="width: 0%"></div>
-                </div>
-                <div class="avance-detalle">
-                    <span id="reportePorcentaje">0% completado</span>
-                    <span id="reporteRestantes">Faltan 120 días</span>
-                </div>
-            </div>
-
-            <!-- PRÓXIMO CORTE DE MES -->
-            <div class="tarjeta-corte">
-                <div class="corte-titulo">📅 PRÓXIMO CORTE DE MES</div>
-                <div class="corte-fecha" id="reporteProximoCorte">—</div>
-                <div class="corte-restantes" id="reporteRestantesCorte">—</div>
-            </div>
-
-            <!-- TABLA RESUMEN PARA BRIEFING -->
-            <div class="tarjeta-tabla-briefing">
-                <div class="resumen-titulo">📊 TABLA PARA BRIEFING</div>
-                <div class="tabla-scroll">
-                    <table class="tabla-briefing" id="tablaBriefing">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Jornada</th>
-                                <th>Ciudad</th>
-                                <th>Actividad</th>
-                                <th>Proyecto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbodyBriefing">
-                            <tr>
-                                <td colspan="5" class="tabla-vacia">Sin actividades registradas</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- BOTONES DE EXPORTACIÓN -->
-            <div class="tarjeta-exportacion">
-                <div class="resumen-titulo">📤 EXPORTAR DATOS</div>
-                <button class="boton-secundario" id="btnExportarBriefing">📊 Exportar Briefing (CSV)</button>
-                <button class="boton-secundario" id="btnExportarStatement">💰 Exportar Statement of accounts
-                    (CSV)</button>
-                <button class="boton-secundario" id="btnExportarAgente">📝 Exportar para Agente (JSON)</button>
-                <button class="boton-secundario" id="btnCrearRespaldo">💾 Crear respaldo completo (JSON)</button>
-                <button class="boton-secundario" id="btnImportarRespaldo">📥 Importar respaldo (JSON)</button>
-                <input type="file" id="inputImportar" accept=".json" style="display: none;">
-            </div>
-
-            <!-- MODAL PARA RANGO DE FECHAS DEL AGENTE -->
-            <div id="modalRango" class="modal oculto">
-                <div class="modal-contenido">
-                    <div class="modal-header">
-                        <h3>Exportar para Agente (IA)</h3>
-                        <button class="btn-cerrar" id="btnCerrarRango">✕</button>
-                    </div>
-                    <p class="modal-descripcion">
-                        Selecciona el rango de fechas. Se exportarán las actividades y gastos en ese período.
-                    </p>
-                    <label>Fecha de inicio
-                        <input type="date" id="rangoFechaInicio">
-                    </label>
-                    <label>Fecha de fin
-                        <input type="date" id="rangoFechaFin">
-                    </label>
-                    <div class="modal-acciones">
-                        <button type="button" class="boton-secundario" id="btnCancelarRango">Cancelar</button>
-                        <button type="button" class="boton-principal" id="btnConfirmarRango">Exportar</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN CONTRATO -->
-        <section id="seccion-contrato" class="seccion">
-            <h2>Contrato</h2>
-            <p class="subtitulo">Configuración del contrato actual</p>
-
-            <div class="tarjeta-config">
-                <div class="resumen-titulo">📋 DATOS DEL CONTRATO</div>
-
-                <label>Consultora
-                    <input type="text" id="configConsultora" placeholder="Ej: Carmen Marquez Arrieta">
-                </label>
-
-                <label>Proyecto
-                    <input type="text" id="configProyecto" placeholder="Ej: P.220-2022-001">
-                </label>
-
-                <label>País / Ciudad
-                    <input type="text" id="configPais" placeholder="Ej: Cuba">
-                </label>
-
-                <label>Fecha de inicio del contrato
-                    <input type="date" id="configFechaInicio">
-                </label>
-
-                <label>Fecha de fin del contrato
-                    <input type="date" id="configFechaFin">
-                </label>
-
-                <label>Días contratados totales
-                    <input type="number" id="configDiasTotales" min="1" value="120">
-                </label>
-
-                <label>Número de viajes planificados
-                    <input type="number" id="configNumViajes" min="0" value="3">
-                </label>
-
-                <label>Descripción de la operación
-                    <textarea id="configDescripcion" rows="4"
-                        placeholder="Ej: Acompañamiento técnico a Cáritas Cuba..."></textarea>
-                </label>
-            </div>
-
-            <div class="tarjeta-config">
-                <div class="resumen-titulo">💰 PRESUPUESTO</div>
-
-                <label>Tarifa diaria (EUR)
-                    <input type="number" id="configTarifaDiaria" step="0.01" min="0" placeholder="Ej: 255">
-                </label>
-
-                <label>Presupuesto de viajes (EUR)
-                    <input type="number" id="configPresupuestoViajes" step="0.01" min="0" placeholder="Ej: 12592">
-                </label>
-
-                <div class="corte-titulo" style="margin-top: 12px;">Cálculo automático:</div>
-                <div class="config-calculo">
-                    <span>Honorarios:</span>
-                    <strong id="configHonorariosCalculados">0.00 EUR</strong>
-                </div>
-                <div class="config-calculo">
-                    <span>Presupuesto total:</span>
-                    <strong id="configTotalCalculado">0.00 EUR</strong>
-                </div>
-            </div>
-
-            <div class="tarjeta-config">
-                <div class="resumen-titulo">📅 FECHAS DE INFORMES</div>
-                <div id="listaInformesConfig">
-                    <p class="resumen-vacio">Sin informes configurados</p>
-                </div>
-                <button type="button" class="boton-secundario" id="btnAgregarInforme">+ Agregar informe</button>
-            </div>
-
-            <div class="tarjeta-config">
-                <div class="resumen-titulo">📊 TAREAS PLANIFICADAS</div>
-                <div id="listaTareasConfig">
-                    <p class="resumen-vacio">Sin tareas configuradas</p>
-                </div>
-                <button type="button" class="boton-secundario" id="btnAgregarTarea">+ Agregar tarea</button>
-            </div>
-
-            <div class="tarjeta-config">
-                <div class="resumen-titulo">✈️ VIAJES PLANIFICADOS</div>
-                <div id="listaViajesConfig">
-                    <p class="resumen-vacio">Sin viajes configurados</p>
-                </div>
-                <button type="button" class="boton-secundario" id="btnAgregarViaje">+ Agregar viaje</button>
-            </div>
-
-            <button class="boton-principal" id="btnGuardarConfig">💾 Guardar configuración</button>
+        <section class="bloques">
+            <h2>Explorar por categoría</h2>
+            <div id="lista-bloques" class="lista-bloques"></div>
         </section>
     </main>
 
-    <!-- MODAL FORMULARIO ACTIVIDAD -->
-    <div id="modalFormulario" class="modal oculto">
-        <div class="modal-contenido">
-            <div class="modal-header">
-                <h3>Nueva actividad</h3>
-                <button class="btn-cerrar" id="btnCerrarModal">✕</button>
-            </div>
+    <footer>
+        <p>Cáritas Cuba · GRD · Laudato si' · Ley 149/2022</p>
+    </footer>
 
-            <form id="formularioActividad">
-                <label>Fecha
-                    <input type="date" id="campoFecha" required>
-                </label>
-
-                <label>Tipo de día
-                    <div class="grupo-radio">
-                        <label class="opcion-radio">
-                            <input type="radio" name="tipoDia" value="terreno" checked>
-                            <span>Terreno</span>
-                        </label>
-                        <label class="opcion-radio">
-                            <input type="radio" name="tipoDia" value="remoto">
-                            <span>Remoto</span>
-                        </label>
-                    </div>
-                </label>
-
-                <label>Tipo de jornada
-                    <div class="grupo-radio">
-                        <label class="opcion-radio">
-                            <input type="radio" name="tipoJornada" value="1" checked>
-                            <span>Día completo</span>
-                        </label>
-                        <label class="opcion-radio">
-                            <input type="radio" name="tipoJornada" value="0.5">
-                            <span>Medio día</span>
-                        </label>
-                    </div>
-                </label>
-
-                <label>Componente
-                    <input type="text" id="campoComponente" placeholder="Ej: Salud, Educación, Agua" required>
-                </label>
-
-                <label>Ciudad de la actividad
-                    <input type="text" id="campoCiudad" placeholder="Ej: La Habana, Placetas, Baracoa..." required>
-                </label>
-
-                <label>Tema específico
-                    <input type="text" id="campoTema" placeholder="Ej: Capacitación a promotores" required>
-                </label>
-
-                <label>Proyecto
-                    <input type="text" id="campoProyecto" placeholder="Ej: P.220-2022-001">
-                </label>
-
-                <label>Participantes
-                    <input type="number" id="campoParticipantes" min="0" value="0">
-                </label>
-
-                <label>Resultados / logros del día
-                    <textarea id="campoResultados" rows="3"></textarea>
-                </label>
-
-                <label>Riesgos identificados
-                    <textarea id="campoRiesgos" rows="3"></textarea>
-                </label>
-
-                <label>Próximos pasos
-                    <textarea id="campoProximos" rows="3"></textarea>
-                </label>
-
-                <label>Notas libres
-                    <textarea id="campoNotas" rows="3"></textarea>
-                </label>
-
-                <div class="modal-acciones">
-                    <button type="button" class="boton-secundario" id="btnCancelar">Cancelar</button>
-                    <button type="submit" class="boton-principal">Guardar actividad</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL FORMULARIO GASTO -->
-    <div id="modalGasto" class="modal oculto">
-        <div class="modal-contenido">
-            <div class="modal-header">
-                <h3>Nuevo gasto</h3>
-                <button class="btn-cerrar" id="btnCerrarModalGasto">✕</button>
-            </div>
-
-            <form id="formularioGasto">
-                <label>Fecha
-                    <input type="date" id="gastoFecha" required>
-                </label>
-
-                <label>Concepto
-                    <input type="text" id="gastoConcepto" placeholder="Ej: Taxi al aeropuerto" required>
-                </label>
-
-                <label>Categoría
-                    <select id="gastoCategoria" required>
-                        <option value="transporte">Transporte</option>
-                        <option value="alojamiento">Alojamiento</option>
-                        <option value="comida">Comida</option>
-                        <option value="materiales">Materiales</option>
-                        <option value="comunicaciones">Comunicaciones</option>
-                        <option value="otros">Otros</option>
-                    </select>
-                </label>
-
-                <div class="fila-doble">
-                    <label>Monto
-                        <input type="number" id="gastoMonto" step="0.01" min="0" placeholder="0.00" required>
-                    </label>
-
-
-                    <label>Moneda
-                        <select id="gastoMoneda" required>
-                            <option value="COP">COP - Peso colombiano</option>
-                            <option value="CUP">CUP - Peso cubano</option>
-                            <option value="MLC">MLC</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                        </select>
-                    </label>
-                </div>
-
-                <label>Tasa a EUR (¿cuántos EUR vale 1 unidad?)
-                    <input type="text" id="gasoTasa" inputmode="decimal" placeholder="Ej: 0.000281" required>
-                    <small class="ayuda-tasa" id="ayudaTasa">Ejemplo: si 1 EUR = 4,500 COP, escribe 0.00022222</small>
-                </label>
-
-                <div class="vista-previa-conversion" id="vistaPrevia">
-                    Equivalente: <strong>€ 0.00</strong>
-                </div>
-
-                <label>Comprobante
-                    <div class="grupo-radio">
-                        <label class="opcion-radio">
-                            <input type="radio" name="gastoComprobante" value="si" checked>
-                            <span>Sí</span>
-                        </label>
-                        <label class="opcion-radio">
-                            <input type="radio" name="gastoComprobante" value="no">
-                            <span>No</span>
-                        </label>
-                    </div>
-                </label>
-
-                <label>Proyecto
-                    <input type="text" id="gastoProyecto" placeholder="Ej: P.220-2022-001">
-                </label>
-
-                <label>Número de recibo (Receipt number)
-                    <input type="text" id="gastoReceipt" placeholder="Ej: R-001">
-                </label>
-
-                <label>Notas
-                    <textarea id="gastoNotas" rows="2"></textarea>
-                </label>
-
-                <div class="modal-acciones">
-                    <button type="button" class="boton-secundario" id="btnCancelarGasto">Cancelar</button>
-                    <button type="submit" class="boton-principal">Guardar gasto</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- NAVEGACIÓN INFERIOR -->
-    <nav class="app-nav">
-        <button class="nav-item activo" data-seccion="hoy">
-            <span class="nav-icono">📋</span>
-            <span class="nav-texto">Hoy</span>
-        </button>
-        <button class="nav-item" data-seccion="gastos">
-            <span class="nav-icono">💰</span>
-            <span class="nav-texto">Gastos</span>
-        </button>
-        <button class="nav-item" data-seccion="viajes">
-            <span class="nav-icono">✈️</span>
-            <span class="nav-texto">Viajes</span>
-        </button>
-        <button class="nav-item" data-seccion="reportes">
-            <span class="nav-icono">📊</span>
-            <span class="nav-texto">Reportes</span>
-        </button>
-
-        <button class="nav-item" data-seccion="contrato">
-            <span class="nav-icono">⚙️</span>
-            <span class="nav-texto">Contrato</span>
-        </button>
-    </nav>
-
-    <script src="app.js"></script>
+    <script src="js/riesgos.js"></script>
+    <script src="js/app.js"></script>
     <script>
+        // Registrar el Service Worker para funcionar offline
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./service-worker.js')
