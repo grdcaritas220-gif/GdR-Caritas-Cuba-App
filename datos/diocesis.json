@@ -1,12 +1,13 @@
 {
-    "version": "1.0",
-    "fecha": "2026-10-09",
+    "version": "1.1",
+    "fecha": "2026-10-20",
     "pais": "Cuba",
     "organizacion": "Cáritas Cuba",
     "total": 11,
     "caritas_locales": [
         {
             "id": "pinar-del-rio",
+            "codigo": "CU-PDR",
             "nombre": "Cáritas Pinar del Río",
             "zona": "Occidente",
             "provincias": [
@@ -15,6 +16,7 @@
         },
         {
             "id": "habana",
+            "codigo": "CU-HAB",
             "nombre": "Cáritas Habana",
             "zona": "Occidente",
             "provincias": [
@@ -25,6 +27,7 @@
         },
         {
             "id": "matanzas",
+            "codigo": "CU-MTZ",
             "nombre": "Cáritas Matanzas",
             "zona": "Occidente",
             "provincias": [
@@ -33,6 +36,7 @@
         },
         {
             "id": "cienfuegos",
+            "codigo": "CU-CFG",
             "nombre": "Cáritas Cienfuegos",
             "zona": "Centro",
             "provincias": [
@@ -41,6 +45,7 @@
         },
         {
             "id": "santa-clara",
+            "codigo": "CU-STC",
             "nombre": "Cáritas Santa Clara",
             "zona": "Centro",
             "provincias": [
@@ -49,6 +54,7 @@
         },
         {
             "id": "ciego-de-avila",
+            "codigo": "CU-CAV",
             "nombre": "Cáritas Ciego de Ávila",
             "zona": "Centro",
             "provincias": [
@@ -57,6 +63,7 @@
         },
         {
             "id": "camaguey",
+            "codigo": "CU-CMG",
             "nombre": "Cáritas Camagüey",
             "zona": "Centro-Oriente",
             "provincias": [
@@ -65,6 +72,7 @@
         },
         {
             "id": "holguin",
+            "codigo": "CU-HLG",
             "nombre": "Cáritas Holguín",
             "zona": "Oriente",
             "provincias": [
@@ -73,6 +81,7 @@
         },
         {
             "id": "bayamo-manzanillo",
+            "codigo": "CU-BYM",
             "nombre": "Cáritas Bayamo-Manzanillo",
             "zona": "Oriente",
             "provincias": [
@@ -81,6 +90,7 @@
         },
         {
             "id": "santiago-de-cuba",
+            "codigo": "CU-STG",
             "nombre": "Cáritas Santiago de Cuba",
             "zona": "Oriente",
             "provincias": [
@@ -89,6 +99,7 @@
         },
         {
             "id": "guantanamo-baracoa",
+            "codigo": "CU-GTB",
             "nombre": "Cáritas Guantánamo-Baracoa",
             "zona": "Oriente",
             "provincias": [

@@ -147,19 +147,29 @@ function fechaHoy() {
 }
 
 // ===== 8. MOSTRAR FORMULARIO =====
-function mostrarFormularioRiesgo() {
+async function mostrarFormularioRiesgo(idRiesgo = null) {
   const contenedor = document.getElementById('resultados');
+  // Si es edición, cargar los datos del riesgo
+  let riesgoEditando = null;
+  if (idRiesgo) {
+    const riesgos = await obtenerRiesgos();
+    riesgoEditando = riesgos.find(r => r.id === idRiesgo);
+    if (!riesgoEditando) {
+      alert('No se encontró el riesgo a editar.');
+      return;
+    }
+  }
   contenedor.innerHTML = `
     <button class="btn-volver" onclick="volverInicio()">← Volver</button>
     
     <div class="formulario-riesgo">
-      <h2>📝 Registrar nuevo riesgo</h2>
+      <h2>${idRiesgo ? '✏️ Editar riesgo' : '📝 Registrar nuevo riesgo'}</h2>
       
       <form id="form-riesgo" onsubmit="manejarSubmitRiesgo(event)">
         
         <div class="campo">
           <label for="titulo">Título del riesgo *</label>
-          <input type="text" id="titulo" required placeholder="Ej: Inundación en comunidad X">
+          <input type="text" id="titulo" required placeholder="Ej: Inundación en comunidad X" value="${riesgoEditando ? riesgoEditando.titulo : ''}">
         </div>
         
         <div class="campo">
@@ -282,6 +292,28 @@ function mostrarFormularioRiesgo() {
       </form>
     </div>
   `;
+  // Si es edición, rellenar los campos con los datos existentes
+  if (riesgoEditando) {
+    document.getElementById('form-riesgo').dataset.idRiesgo = riesgoEditando.id;
+    document.getElementById('titulo').value = riesgoEditando.titulo || '';
+    document.getElementById('descripcion').value = riesgoEditando.descripcion || '';
+    document.getElementById('categoria').value = riesgoEditando.categoria || '';
+    document.getElementById('fecha').value = riesgoEditando.fecha_identificacion || fechaHoy();
+    document.getElementById('caritas_local').value = riesgoEditando.caritas_local || '';
+    document.getElementById('amenaza').value = riesgoEditando.amenaza || '';
+    document.getElementById('vulnerabilidad').value = riesgoEditando.vulnerabilidad || '';
+    document.getElementById('capacidad').value = riesgoEditando.capacidad || '';
+    document.getElementById('probabilidad').value = riesgoEditando.probabilidad || '';
+    document.getElementById('impacto').value = riesgoEditando.impacto || '';
+    document.getElementById('zona').value = riesgoEditando.zona_geografica || '';
+    document.getElementById('poblacion').value = riesgoEditando.poblacion_afectada || '';
+    document.getElementById('responsable').value = riesgoEditando.responsable || '';
+    document.getElementById('tratamiento').value = riesgoEditando.tratamiento || '';
+    document.getElementById('notas').value = riesgoEditando.notas || '';
+
+    // Actualizar vista previa del nivel
+    actualizarNivelPreview();
+  }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -305,19 +337,20 @@ function actualizarNivelPreview() {
 // ===== 10. MANEJAR SUBMIT =====
 async function manejarSubmitRiesgo(event) {
   event.preventDefault();
-
+  const esEdicion = document.getElementById('form-riesgo').dataset.idRiesgo;
   const probabilidad = parseInt(document.getElementById('probabilidad').value);
   const impacto = parseInt(document.getElementById('impacto').value);
   const { nivel, clasificacion } = calcularNivel(probabilidad, impacto);
 
   const riesgo = {
-    id: generarID(),
+    id: esEdicion || generarID(),
     fecha_identificacion: document.getElementById('fecha').value,
     fecha_actualizacion: fechaHoy(),
     titulo: document.getElementById('titulo').value,
     descripcion: document.getElementById('descripcion').value,
     categoria: document.getElementById('categoria').value,
     caritas_local: document.getElementById('caritas_local').value,
+    caritas_codigo: caritasLocales.find(c => c.nombre === document.getElementById('caritas_local').value)?.codigo || 'CU-UNK',
     amenaza: document.getElementById('amenaza').value,
     vulnerabilidad: document.getElementById('vulnerabilidad').value,
     capacidad: document.getElementById('capacidad').value,
@@ -343,32 +376,97 @@ async function manejarSubmitRiesgo(event) {
 }
 
 // ===== 11. MOSTRAR LISTA DE RIESGOS =====
-async function mostrarListaRiesgos() {
+async function mostrarListaRiesgos(filtroCaritas = '') {
   const contenedor = document.getElementById('resultados');
 
   try {
-    const riesgos = await obtenerRiesgos();
+    let riesgos = await obtenerRiesgos();
 
-    if (riesgos.length === 0) {
-      contenedor.innerHTML = `
-        <button class="btn-volver" onclick="volverInicio()">← Volver</button>
-        <div class="sin-riesgos">
-          <p>📋 No hay riesgos registrados todavía.</p>
-          <button class="btn-guardar" onclick="mostrarFormularioRiesgo()">➕ Registrar primer riesgo</button>
-        </div>
-      `;
-      return;
+    // Aplicar filtro por Cáritas Local
+    if (filtroCaritas) {
+      riesgos = riesgos.filter(r => r.caritas_local === filtroCaritas);
     }
 
-    // Ordenar por fecha (más recientes primero)
+    // SI NO HAY RIESGOS (Muestra mensaje contextual y mantiene el filtro)
+    if (riesgos.length === 0) {
+      const mensaje = filtroCaritas
+        ? `📋 No hay riesgos registrados en <strong>${filtroCaritas}</strong>.`
+        : '📋 No hay riesgos registrados todavía.';
+
+      contenedor.innerHTML = `
+        <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+        <div class="lista-riesgos">
+                  <div class="cabecera-lista">
+          <h2>📋 Riesgos registrados (${riesgos.length})</h2>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+            <button class="btn-guardar" onclick="mostrarFormularioRiesgo()">➕ Nuevo riesgo</button>
+            <button class="btn-guardar" onclick="exportarJSON()" style="background: #16a34a;">📤 Exportar JSON</button>
+            <button class="btn-guardar" onclick="exportarCSV()" style="background: #ea580c;">📊 Exportar CSV</button>
+            <label class="btn-guardar" style="background: #0284c7; cursor: pointer; margin: 0; display: inline-block; text-align: center;">
+              📥 Importar JSON
+              <input type="file" id="input-importar" accept=".json" onchange="importarJSON(event)" style="display: none;">
+            </label>
+          </div>
+        </div>
+          
+          <div class="filtro-caritas">
+            <label for="filtro-caritas-lista">🔍 Filtrar por Cáritas Local:</label>
+            <select id="filtro-caritas-lista" onchange="mostrarListaRiesgos(this.value)">
+              <option value="">Todas las Cáritas Locales</option>
+              ${generarOpcionesCaritas()}
+            </select>
+          </div>
+          
+          <div class="sin-riesgos">
+            <p>${mensaje}</p>
+            ${filtroCaritas
+          ? '<button class="btn-guardar" onclick="mostrarFormularioRiesgo()">➕ Registrar riesgo en ' + filtroCaritas + '</button>'
+          : '<button class="btn-guardar" onclick="mostrarFormularioRiesgo()">➕ Registrar primer riesgo</button>'
+        }
+          </div>
+        </div>
+      `;
+
+      // Marcar el filtro seleccionado
+      if (filtroCaritas) {
+        const select = document.getElementById('filtro-caritas-lista');
+        if (select) {
+          for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === filtroCaritas) {
+              select.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+      return; // Sale de la función si está vacía
+    }
+
+    // SI HAY RIESGOS (Ordena y muestra la lista normal)
     riesgos.sort((a, b) => b.fecha_identificacion.localeCompare(a.fecha_identificacion));
 
     let html = `
       <button class="btn-volver" onclick="volverInicio()">← Volver</button>
       <div class="lista-riesgos">
-        <div class="cabecera-lista">
+              <div class="cabecera-lista">
           <h2>📋 Riesgos registrados (${riesgos.length})</h2>
-          <button class="btn-guardar" onclick="mostrarFormularioRiesgo()">➕ Nuevo riesgo</button>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+            <button class="btn-guardar" onclick="mostrarFormularioRiesgo()">➕ Nuevo riesgo</button>
+            <button class="btn-guardar" onclick="exportarJSON()" style="background: #16a34a;">📤 Exportar JSON</button>
+            <button class="btn-guardar" onclick="exportarCSV()" style="background: #ea580c;">📊 Exportar CSV</button>
+            <label class="btn-guardar" style="background: #0284c7; cursor: pointer; margin: 0; display: inline-block; text-align: center;">
+              📥 Importar JSON
+              <input type="file" id="input-importar" accept=".json" onchange="importarJSON(event)" style="display: none;">
+            </label>
+          </div>
+        </div>
+        
+        <div class="filtro-caritas">
+          <label for="filtro-caritas-lista">🔍 Filtrar por Cáritas Local:</label>
+          <select id="filtro-caritas-lista" onchange="mostrarListaRiesgos(this.value)">
+            <option value="">Todas las Cáritas Locales</option>
+            ${generarOpcionesCaritas()}
+          </select>
         </div>
     `;
 
@@ -384,20 +482,32 @@ async function mostrarListaRiesgos() {
             <span class="badge-${colorNivel}">${r.clasificacion} (${r.nivel_riesgo})</span>
           </div>
           <p class="meta">
-                      ⛪ ${r.caritas_local || '—'} · 📅 ${r.fecha_identificacion} · 📂 ${r.categoria} · 👤 ${r.responsable}
+           ⛪ ${r.caritas_local || '—'} ${r.caritas_codigo ? '(' + r.caritas_codigo + ')' : ''} · 📅 ${r.fecha_identificacion} · 📂 ${r.categoria} · 👤 ${r.responsable}
           </p>
           <p class="descripcion-corta">${r.descripcion.substring(0, 150)}...</p>
           <div class="tarjeta-acciones">
             <button class="btn-mini btn-ver" onclick="verDetalleRiesgo('${r.id}')">👁 Ver</button>
+            <button class="btn-mini btn-editar" onclick="editarRiesgo('${r.id}')">✏️ Editar</button>
             <button class="btn-mini btn-eliminar" onclick="confirmarEliminar('${r.id}')">🗑 Eliminar</button>
           </div>
-        </div>
       `;
     });
 
     html += '</div>';
     contenedor.innerHTML = html;
 
+    // Marcar el filtro seleccionado (para la lista normal)
+    if (filtroCaritas) {
+      const select = document.getElementById('filtro-caritas-lista');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === filtroCaritas) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
   } catch (error) {
     contenedor.innerHTML = `<p>Error al cargar riesgos: ${error.message}</p>`;
   }
@@ -489,7 +599,8 @@ async function exportarCSV() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `riesgos-${fechaHoy()}.csv`;
+  const sufijo = riesgos.length > 0 ? `-${riesgos[0].caritas_codigo || 'Cuba'}` : '';
+  a.download = `riesgos-${fechaHoy()}${sufijo}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -581,7 +692,31 @@ function convertirMarkdownAHTML(md) {
 
   return html;
 }
+// ===== 23. ABRIR PRIVACIDAD =====
+async function abrirPrivacidad() {
+  const contenedor = document.getElementById('resultados');
 
+  try {
+    const respuesta = await fetch('./datos/privacidad.md');
+    const texto = await respuesta.text();
+    const html = convertirMarkdownAHTML(texto);
+
+    contenedor.innerHTML = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <div class="guia-contenido">
+        ${html}
+      </div>
+    `;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (error) {
+    contenedor.innerHTML = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <p>Error al cargar la política: ${error.message}</p>
+    `;
+  }
+}
 // ===== 16. INICIALIZAR AL CARGAR LA PÁGINA =====
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -592,3 +727,85 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('❌ Error al inicializar módulo de riesgos:', error);
   }
 });
+// ===== 21. EXPORTAR CSV (PARA EXCEL) =====
+async function exportarCSV() {
+  try {
+    const riesgos = await obtenerRiesgos();
+
+    if (riesgos.length === 0) {
+      alert('No hay riesgos para exportar.');
+      return;
+    }
+
+    // Definir las columnas (encabezados)
+    const encabezados = [
+      'ID',
+      'Fecha Identificación',
+      'Cáritas Local',
+      'Código',
+      'Título',
+      'Categoría',
+      'Probabilidad',
+      'Impacto',
+      'Nivel',
+      'Clasificación',
+      'Responsable',
+      'Tratamiento',
+      'Estado',
+      'Zona',
+      'Población',
+      'Descripción'
+    ];
+
+    // Crear las filas con los datos
+    const filas = riesgos.map(r => [
+      r.id || '',
+      r.fecha_identificacion || '',
+      r.caritas_local || '',
+      r.caritas_codigo || '',
+      r.titulo || '',
+      r.categoria || '',
+      r.probabilidad || '',
+      r.impacto || '',
+      r.nivel_riesgo || '',
+      r.clasificacion || '',
+      r.responsable || '',
+      r.tratamiento || '',
+      r.estado || '',
+      r.zona_geografica || '',
+      r.poblacion_afectada || '',
+      (r.descripcion || '').replace(/"/g, '""') // Escapar comillas dobles
+    ]);
+
+    // Unir encabezados y filas con comas
+    // Usamos punto y coma (;) como separador para que Excel en español lo abra bien
+    const separador = ';';
+    const csvContent = [
+      encabezados.join(separador),
+      ...filas.map(fila => fila.map(c => `"${c}"`).join(separador))
+    ].join('\n');
+
+    // Añadir BOM para que Excel reconozca los acentos (UTF-8)
+    const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+
+    // Nombre del archivo
+    const sufijo = riesgos.length > 0 ? `-${riesgos[0].caritas_codigo || 'Cuba'}` : '';
+    a.download = `riesgos-${fechaHoy()}${sufijo}.csv`;
+
+    a.click();
+    URL.revokeObjectURL(url);
+
+    alert(`✅ Exportados ${riesgos.length} riesgos a CSV correctamente.\n\nPuedes abrirlo con Excel.`);
+
+  } catch (error) {
+    console.error('Error al exportar CSV:', error);
+    alert('❌ Error al exportar CSV: ' + error.message);
+  }
+}
+// ===== 22. EDITAR RIESGO =====
+async function editarRiesgo(id) {
+  await mostrarFormularioRiesgo(id);
+}

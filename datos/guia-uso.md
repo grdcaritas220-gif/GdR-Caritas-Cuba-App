@@ -410,3 +410,67 @@ Decreto-Ley 370/2018
 Versión: 1.0 — Octubre 2026
 
 "La Gestión de Riesgo de Desastres es un acto de amor al prójimo."
+
+---
+
+## 📤 CÓMO EXPORTAR E IMPORTAR DATOS
+
+### Exportar a JSON (copia de seguridad)
+
+1. En **📋 Riesgos**, haz clic en **"📤 Exportar JSON"**.
+2. Se descargará un archivo `riesgos-FECHA-CÓDIGO.json`.
+3. Guárdalo en un lugar seguro (WhatsApp, email, USB).
+
+**¿Para qué sirve?**
+- Hacer copias de seguridad.
+- Transferir riesgos entre dispositivos.
+- Enviar reportes a Cáritas Nacional.
+
+### Exportar a CSV (para Excel)
+
+1. En **📋 Riesgos**, haz clic en **"📊 Exportar CSV"**.
+2. Se descargará un archivo `riesgos-FECHA-CÓDIGO.csv`.
+3. Ábrelo con Excel o Google Sheets.
+
+**¿Para qué sirve?**
+- Hacer tablas y gráficos.
+- Filtrar por Cáritas Local.
+- Generar reportes nacionales.
+
+### Importar datos (recibir de otros)
+
+1. En **📋 Riesgos**, haz clic en **"📥 Importar JSON"**.
+2. Selecciona el archivo `.json` que te enviaron.
+3. Confirma si quieres actualizar los riesgos existentes.
+
+**¿Para qué sirve?**
+- Recibir riesgos de voluntarios.
+- Consolidar datos de varias Cáritas.
+- Recuperar una copia de seguridad.
+
+---
+
+## ✏️ CÓMO EDITAR UN RIESGO
+
+1. En **📋 Riesgos**, busca el riesgo que quieres cambiar.
+2. Haz clic en **"✏️ Editar"**.
+3. Modifica los campos que necesites.
+4. Haz clic en **"💾 Actualizar riesgo"**.
+
+**¿Para qué sirve?**
+- Cambiar el estado (Abierto → En tratamiento → Cerrado).
+- Corregir datos erróneos.
+- Actualizar la probabilidad o el impacto.
+
+---
+
+## 🔒 POLÍTICA DE PRIVACIDAD
+
+1. En la pantalla principal, haz clic en **"🔒 Privacidad"**.
+2. Lee la política completa (cumple con la Ley 149/2022).
+
+**¿Qué incluye?**
+- Qué datos se recogen.
+- Dónde se guardan (solo en tu dispositivo).
+- Tus derechos (acceso, rectificación, cancelación).
+- Contacto de Cáritas Cuba.
