@@ -2,7 +2,7 @@
 // SERVICE WORKER - GdR Cáritas Cuba
 // ============================================
 
-const CACHE_NAME = 'gdr-caritas-v23';
+const CACHE_NAME = 'gdr-caritas-v24';
 
 // Archivos que se guardan para funcionar offline
 const ARCHIVOS_CACHE = [
