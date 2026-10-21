@@ -726,7 +726,13 @@ async function importarJSON(event) {
     const texto = await archivo.text();
     const datos = JSON.parse(texto);
 
-    if (!datos.riesgos || !Array.isArray(datos.riesgos)) {
+    // Aceptar tanto si es un objeto con "riesgos" como si es una lista directa
+    let listaRiesgos = [];
+    if (datos.riesgos && Array.isArray(datos.riesgos)) {
+      listaRiesgos = datos.riesgos;
+    } else if (Array.isArray(datos)) {
+      listaRiesgos = datos;
+    } else {
       alert('❌ El archivo no tiene el formato correcto de Cáritas.');
       return;
     }
@@ -742,7 +748,7 @@ async function importarJSON(event) {
 
     const sobreescribir = modo;
 
-    for (const riesgo of datos.riesgos) {
+    for (const riesgo of listaRiesgos) {
       const existente = mapaActuales.get(riesgo.id);
 
       if (existente) {
