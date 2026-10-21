@@ -809,3 +809,76 @@ async function exportarCSV() {
 async function editarRiesgo(id) {
   await mostrarFormularioRiesgo(id);
 }
+// ===== 24. ABRIR DASHBOARD =====
+async function abrirDashboard() {
+  const contenedor = document.getElementById('resultados');
+  const riesgos = await obtenerRiesgos();
+
+  if (riesgos.length === 0) {
+    contenedor.innerHTML = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <p style="text-align:center; padding: 40px;">No hay riesgos registrados para mostrar gráficos.</p>
+    `;
+    return;
+  }
+
+  contenedor.innerHTML = `
+    <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+    <div class="dashboard-contenido">
+      <h2>📊 Panel de Control Nacional</h2>
+      
+      <div class="graficos-grid">
+        <div class="grafico-card">
+          <h3>Riesgos por Cáritas Local</h3>
+          <div style="position: relative; height: 250px; width: 100%;">
+            <canvas id="grafico-caritas"></canvas>
+          </div>
+        </div>
+        
+        <div class="grafico-card">
+          <h3>Distribución por Nivel</h3>
+          <div style="position: relative; height: 250px; width: 100%;">
+            <canvas id="grafico-niveles"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const conteoCaritas = {};
+  const conteoNiveles = { 'Bajo': 0, 'Medio': 0, 'Alto': 0, 'Crítico': 0 };
+
+  riesgos.forEach(r => {
+    const c = r.caritas_local || 'Sin asignar';
+    conteoCaritas[c] = (conteoCaritas[c] || 0) + 1;
+
+    if (conteoNiveles[r.clasificacion] !== undefined) {
+      conteoNiveles[r.clasificacion]++;
+    }
+  });
+
+  new Chart(document.getElementById('grafico-caritas'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(conteoCaritas),
+      datasets: [{
+        label: 'Cantidad de Riesgos',
+        data: Object.values(conteoCaritas),
+        backgroundColor: '#1a5490'
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+
+  new Chart(document.getElementById('grafico-niveles'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(conteoNiveles),
+      datasets: [{
+        data: Object.values(conteoNiveles),
+        backgroundColor: ['#16a34a', '#eab308', '#ea580c', '#dc2626']
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}

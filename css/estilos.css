@@ -678,3 +678,60 @@ footer {
 .btn-privacidad:hover {
     background: #581c87;
 }
+
+/* ===== ARREGLO PARA QUE LOS GRÁFICOS NO CREZCAN INFINITAMENTE ===== */
+.grafico-card {
+    position: relative;
+    height: 350px;
+    /* Altura fija para el contenedor */
+    width: 100%;
+}
+
+.grafico-card canvas {
+    max-height: 100% !important;
+    max-width: 100% !important;
+}
+
+/* ===== DASHBOARD ===== */
+.btn-dashboard {
+    background: #0f766e;
+    color: white;
+}
+
+.btn-dashboard:hover {
+    background: #115e59;
+}
+
+.dashboard-contenido {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-contenido h2 {
+    color: #1a5490;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.graficos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.grafico-card {
+    background: #f4f6f8;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.grafico-card h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
