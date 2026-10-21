@@ -717,6 +717,57 @@ async function abrirPrivacidad() {
     `;
   }
 }
+// ===== 20. IMPORTAR JSON (CON FUSIÓN SEGURA) =====
+async function importarJSON(event) {
+  const archivo = event.target.files[0];
+  if (!archivo) return;
+
+  try {
+    const texto = await archivo.text();
+    const datos = JSON.parse(texto);
+
+    if (!datos.riesgos || !Array.isArray(datos.riesgos)) {
+      alert('❌ El archivo no tiene el formato correcto de Cáritas.');
+      return;
+    }
+
+    const riesgosActuales = await obtenerRiesgos();
+    const mapaActuales = new Map(riesgosActuales.map(r => [r.id, r]));
+
+    let nuevos = 0;
+    let actualizados = 0;
+    let conflictos = 0;
+
+    const modo = confirm(`¿Deseas actualizar los riesgos existentes con el mismo ID?\n\n- Aceptar: Actualizar (sobreescribe)\n- Cancelar: Conservar los actuales (no sobreescribe)`);
+
+    const sobreescribir = modo;
+
+    for (const riesgo of datos.riesgos) {
+      const existente = mapaActuales.get(riesgo.id);
+
+      if (existente) {
+        if (sobreescribir) {
+          await guardarRiesgo(riesgo);
+          actualizados++;
+        } else {
+          conflictos++;
+        }
+      } else {
+        await guardarRiesgo(riesgo);
+        nuevos++;
+      }
+    }
+
+    alert(`✅ Importación completada:\n\n- Nuevos riesgos: ${nuevos}\n- Actualizados: ${actualizados}\n- Conservados (sin cambios): ${conflictos}`);
+
+    mostrarListaRiesgos();
+    event.target.value = '';
+
+  } catch (error) {
+    console.error('Error al importar:', error);
+    alert('❌ Error al leer el archivo.');
+  }
+}
 // ===== 16. INICIALIZAR AL CARGAR LA PÁGINA =====
 document.addEventListener('DOMContentLoaded', async () => {
   try {
