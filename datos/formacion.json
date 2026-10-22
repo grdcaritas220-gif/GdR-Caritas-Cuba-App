@@ -1,0 +1,43 @@
+{
+    "cursos": [
+        {
+            "id": "curso-basico",
+            "titulo": "Introducción a la Gestión de Riesgo de Desastres",
+            "nivel": "Básico",
+            "descripcion": "Aprende los conceptos fundamentales de la GRD y el enfoque de Cáritas.",
+            "duracion_min": 15,
+            "lecciones": [
+                {
+                    "id": "lec-1",
+                    "titulo": "¿Qué es el Riesgo?",
+                    "contenido": "El riesgo es la probabilidad de que ocurra un evento dañino (amenaza) y afecte a personas vulnerables. En Cáritas, no solo miramos el evento, sino cómo la comunidad puede prepararse (capacidad). Fórmula: Riesgo = Amenaza x Vulnerabilidad / Capacidad."
+                },
+                {
+                    "id": "lec-2",
+                    "titulo": "La Perspectiva de Laudato si'",
+                    "contenido": "La encíclica Laudato si' nos llama a cuidar la 'Casa Común'. En GRD, esto significa reconocer que el cambio climático aumenta los desastres y que los más pobres son los más afectados. Debemos promover la conversión ecológica y la justicia intergeneracional."
+                }
+            ],
+            "quiz": [
+                {
+                    "pregunta": "¿Cuál es la fórmula del riesgo?",
+                    "opciones": [
+                        "Amenaza + Vulnerabilidad + Capacidad",
+                        "Amenaza x Vulnerabilidad / Capacidad",
+                        "Amenaza - Capacidad"
+                    ],
+                    "respuesta_correcta": 1
+                },
+                {
+                    "pregunta": "¿Qué nos pide Laudato si' en la GRD?",
+                    "opciones": [
+                        "Ignorar el clima",
+                        "Cuidar la Casa Común y a los más vulnerables",
+                        "Solo rezar"
+                    ],
+                    "respuesta_correcta": 1
+                }
+            ]
+        }
+    ]
+}

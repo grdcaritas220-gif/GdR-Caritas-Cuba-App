@@ -2,7 +2,7 @@
 // SERVICE WORKER - GdR Cáritas Cuba
 // ============================================
 
-const CACHE_NAME = 'gdr-caritas-v24';
+const CACHE_NAME = 'gdr-caritas-v42';
 
 // Archivos que se guardan para funcionar offline
 const ARCHIVOS_CACHE = [
@@ -11,10 +11,16 @@ const ARCHIVOS_CACHE = [
     './css/estilos.css',
     './js/app.js',
     './js/riesgos.js',
+    './js/config-ia.js',
     './datos/motor_reglas.json',
     './datos/diocesis.json',
     './datos/guia-uso.md',
     './datos/privacidad.md',
+    './datos/biblioteca.json',
+    './datos/documentos/caritas-guia.md',
+    './datos/documentos/esfera-resumen.md',
+    './datos/documentos/ley-149.md',
+    './datos/formacion.json',
     './manifest.json',
     './iconos/icono-192.png',
     './iconos/icono-512.png'

@@ -774,11 +774,439 @@ async function importarJSON(event) {
     alert('❌ Error al leer el archivo.');
   }
 }
+// ===== 25. ABRIR ASISTENTE IA =====
+function abrirAsistenteIA() {
+  const contenedor = document.getElementById('resultados');
+
+  contenedor.innerHTML = `
+    <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+    <div class="chat-contenedor">
+      <h2>🤖 Asistente IA</h2>
+      <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
+        Pregúntame sobre Gestión de Riesgo de Desastres.
+      </p>
+      
+      <div id="chat-mensajes" class="chat-mensajes">
+        <div class="mensaje bot">
+          ¡Hola! Soy tu asistente de GRD. ¿En qué puedo ayudarte hoy?
+        </div>
+      </div>
+      
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter') enviarMensajeIA()">
+        <button onclick="enviarMensajeIA()">Enviar</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== 26. ENVIAR MENSAJE A LA IA =====
+async function enviarMensajeIA() {
+  const input = document.getElementById('chat-input');
+  const texto = input.value.trim();
+  if (!texto) return;
+
+  // Mostrar mensaje del usuario
+  agregarMensajeChat(texto, 'usuario');
+  input.value = '';
+
+  // Mostrar "escribiendo..."
+  const idEscribiendo = agregarMensajeChat('Escribiendo...', 'bot escribiendo');
+
+  // Detectar si hay internet
+  if (navigator.onLine) {
+    try {
+      // Llamar a DeepSeek
+      const respuesta = await fetch(CONFIG_IA.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${CONFIG_IA.apiKey}`
+        },
+        body: JSON.stringify({
+          model: CONFIG_IA.modelo,
+          messages: [
+            { role: 'system', content: 'Eres un experto en Gestión de Riesgo de Desastres para Cáritas Cuba. Responde de forma clara, breve y práctica. Usa el marco de Cáritas Internationalis y Laudato si\'.' },
+            { role: 'user', content: texto }
+          ]
+        })
+      });
+
+      // Verificar si la respuesta es correcta
+      if (!respuesta.ok) {
+        throw new Error(`Error HTTP: ${respuesta.status}`);
+      }
+
+      const datos = await respuesta.json();
+      const respuestaIA = datos.choices[0].message.content;
+
+      document.getElementById(idEscribiendo).remove();
+      agregarMensajeChat(respuestaIA, 'bot');
+
+    } catch (error) {
+      document.getElementById(idEscribiendo).remove();
+      console.error('Error de conexión con DeepSeek:', error);
+
+      // Si el error es por falta de saldo (402)
+      if (error.message.includes('402')) {
+        agregarMensajeChat('⚠️ La cuenta de IA no tiene saldo disponible en este momento.\n\n💡 *Usando el motor de reglas offline para responder.*', 'bot');
+      } else {
+        agregarMensajeChat('⚠️ No se pudo conectar con la IA (posiblemente sin internet).\n\n💡 *Usando el motor de reglas offline.*', 'bot');
+      }
+
+      // Usar el motor de reglas como respaldo
+      buscarEnMotorReglas(texto, idEscribiendo);
+    }
+  } else {
+    // Sin internet: usar motor de reglas
+    document.getElementById(idEscribiendo).remove();
+    buscarEnMotorReglas(texto, idEscribiendo);
+  }
+}
+// ===== 27. BUSCAR EN EL MOTOR DE REGLAS (OFFLINE) =====
+async function buscarEnMotorReglas(texto, idEscribiendo) {
+  // Buscar en las 40 preguntas
+  if (typeof todasLasPreguntas !== 'undefined' && todasLasPreguntas.length > 0) {
+    const textoLower = texto.toLowerCase();
+    const resultados = todasLasPreguntas.filter(p =>
+      p.pregunta.toLowerCase().includes(textoLower) ||
+      p.respuesta_corta.toLowerCase().includes(textoLower) ||
+      p.palabras_clave.some(k => k.includes(textoLower))
+    );
+
+    if (resultados.length > 0) {
+      const mejor = resultados[0];
+      agregarMensajeChat(`💡 **${mejor.pregunta}**\n\n${mejor.respuesta_corta}\n\n${mejor.respuesta_larga}`, 'bot');
+    } else {
+      agregarMensajeChat('No encontré una respuesta exacta en el motor de reglas. Te recomiendo consultar la pestaña "📚 Consultas" o buscar en la biblioteca.', 'bot');
+    }
+  } else {
+    agregarMensajeChat('El motor de reglas no está disponible en este momento.', 'bot');
+  }
+}
+
+// ===== 28. AGREGAR MENSAJE AL CHAT =====
+function agregarMensajeChat(texto, tipo) {
+  const contenedor = document.getElementById('chat-mensajes');
+  const id = 'msg-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5);
+
+  const div = document.createElement('div');
+  div.id = id;
+  div.className = `mensaje ${tipo}`;
+  div.innerHTML = texto.replace(/\n/g, '<br>');
+  contenedor.appendChild(div);
+  contenedor.scrollTop = contenedor.scrollHeight;
+
+  return id;
+}
+// ===== 29. ABRIR BIBLIOTECA =====
+async function abrirBiblioteca() {
+  const contenedor = document.getElementById('resultados');
+
+  try {
+    const respuesta = await fetch('./datos/biblioteca.json');
+    const datos = await respuesta.json();
+
+    let html = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <div class="biblioteca-contenedor">
+        <h2>📚 Biblioteca Offline</h2>
+        
+        <div class="buscador-biblioteca">
+          <input type="text" id="buscar-biblioteca" placeholder="Buscar documento..." oninput="filtrarBiblioteca()">
+        </div>
+        
+        <div id="lista-documentos" class="lista-documentos">
+    `;
+
+    datos.documentos.forEach(doc => {
+      html += `
+        <div class="tarjeta-documento" data-titulo="${doc.titulo.toLowerCase()}">
+          <h3>${doc.titulo}</h3>
+          <p class="categoria-doc">${doc.categoria}</p>
+          <p class="descripcion-doc">${doc.descripcion}</p>
+          <button class="btn-abrir-doc" onclick="abrirDocumento('${doc.archivo}')">📖 Leer documento</button>
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </div>
+    `;
+
+    contenedor.innerHTML = html;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (error) {
+    contenedor.innerHTML = `<p>Error al cargar la biblioteca: ${error.message}</p>`;
+  }
+}
+
+// ===== 30. ABRIR UN DOCUMENTO =====
+async function abrirDocumento(archivo) {
+  const contenedor = document.getElementById('resultados');
+
+  try {
+    const respuesta = await fetch('./datos/' + archivo);
+    const texto = await respuesta.text();
+    const html = convertirMarkdownAHTML(texto);
+
+    contenedor.innerHTML = `
+      <button class="btn-volver" onclick="abrirBiblioteca()">← Volver a la Biblioteca</button>
+      <div class="guia-contenido">
+        ${html}
+      </div>
+    `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (error) {
+    contenedor.innerHTML = `<p>Error al abrir el documento: ${error.message}</p>`;
+  }
+}
+
+// ===== 31. FILTRAR BIBLIOTECA =====
+function filtrarBiblioteca() {
+  const filtro = document.getElementById('buscar-biblioteca').value.toLowerCase();
+  const tarjetas = document.querySelectorAll('.tarjeta-documento');
+
+  tarjetas.forEach(tarjeta => {
+    const titulo = tarjeta.getAttribute('data-titulo');
+    if (titulo.includes(filtro)) {
+      tarjeta.style.display = 'block';
+    } else {
+      tarjeta.style.display = 'none';
+    }
+  });
+}
+// ===== 32. ABRIR FORMACIÓN =====
+async function abrirFormacion() {
+  const contenedor = document.getElementById('resultados');
+
+  try {
+    const respuesta = await fetch('./datos/formacion.json');
+    const datos = await respuesta.json();
+
+    let html = `
+      <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+      <div class="formacion-contenedor">
+        <h2>🎓 Formación en GRD</h2>
+        <p>Completa los cursos para fortalecer tus conocimientos.</p>
+        <div class="lista-cursos">
+    `;
+
+    datos.cursos.forEach(curso => {
+      html += `
+        <div class="tarjeta-curso">
+          <h3>${curso.titulo}</h3>
+          <span class="nivel-curso">${curso.nivel}</span>
+          <p>${curso.descripcion}</p>
+          <p class="duracion">⏱️ ${curso.duracion_min} min</p>
+          <button class="btn-comenzar" onclick="abrirCurso('${curso.id}')">Comenzar curso</button>
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </div>
+    `;
+    contenedor.innerHTML = html;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (error) {
+    contenedor.innerHTML = `<p>Error al cargar la formación: ${error.message}</p>`;
+  }
+}
+
+// ===== 33. ABRIR UN CURSO =====
+async function abrirCurso(idCurso) {
+  const contenedor = document.getElementById('resultados');
+  const respuesta = await fetch('./datos/formacion.json');
+  const datos = await respuesta.json();
+  const curso = datos.cursos.find(c => c.id === idCurso);
+
+  if (!curso) return;
+
+  let html = `
+    <button class="btn-volver" onclick="abrirFormacion()">← Volver a Formación</button>
+    <div class="curso-contenido">
+      <h2>${curso.titulo}</h2>
+      <p class="nivel-curso">Nivel: ${curso.nivel}</p>
+  `;
+
+  // Mostrar lecciones
+  curso.lecciones.forEach(lec => {
+    html += `
+      <div class="leccion">
+        <h3>📖 ${lec.titulo}</h3>
+        <p>${lec.contenido}</p>
+      </div>
+    `;
+  });
+
+  // Mostrar quiz
+  html += `<h3>📝 Evaluación</h3><form id="form-quiz">`;
+  curso.quiz.forEach((q, index) => {
+    html += `
+      <div class="pregunta-quiz">
+        <p><strong>${index + 1}. ${q.pregunta}</strong></p>
+    `;
+    q.opciones.forEach((opcion, i) => {
+      html += `
+        <label>
+          <input type="radio" name="q${index}" value="${i}" required>
+          ${opcion}
+        </label><br>
+      `;
+    });
+    html += `</div>`;
+  });
+
+  html += `
+      <button type="button" class="btn-guardar" onclick="evaluarQuiz('${curso.id}')">Enviar respuestas</button>
+    </form>
+    <div id="resultado-quiz"></div>
+  </div>
+  `;
+
+  contenedor.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== 34. EVALUAR QUIZ =====
+async function evaluarQuiz(idCurso) {
+  const respuesta = await fetch('./datos/formacion.json');
+  const datos = await respuesta.json();
+  const curso = datos.cursos.find(c => c.id === idCurso);
+
+  let correctas = 0;
+  const form = document.getElementById('form-quiz');
+
+  curso.quiz.forEach((q, index) => {
+    const seleccion = form.querySelector(`input[name="q${index}"]:checked`);
+    if (seleccion && parseInt(seleccion.value) === q.respuesta_correcta) {
+      correctas++;
+    }
+  });
+
+  const total = curso.quiz.length;
+  const porcentaje = Math.round((correctas / total) * 100);
+
+  let mensaje = '';
+  if (porcentaje >= 80) {
+    mensaje = `🎉 ¡Excelente! Has acertado ${correctas} de ${total} (${porcentaje}%).`;
+  } else {
+    mensaje = `📚 Has acertado ${correctas} de ${total} (${porcentaje}%). Te recomendamos repasar las lecciones.`;
+  }
+
+  document.getElementById('resultado-quiz').innerHTML = `
+    <div class="resultado-quiz-exito">
+      <h3>${mensaje}</h3>
+    </div>
+  `;
+}
+// ===== 35. SISTEMA DE ROLES =====
+
+// Definir roles y permisos
+const ROLES = {
+  analista: { nombre: 'voluntario', puedeRiesgos: true, puedeExportar: true },
+  consultor: { nombre: 'coordinador local', puedeRiesgos: true, puedeExportar: true },
+  admin: { nombre: 'Administrador sistema', puedeRiesgos: true, puedeExportar: true }
+};
+
+// Obtener el rol guardado (por defecto: analista)
+function obtenerRolActual() {
+  return localStorage.getItem('gdr_rol') || 'analista';
+}
+
+// Guardar el rol
+function guardarRol(rol) {
+  localStorage.setItem('gdr_rol', rol);
+}
+
+// Comprobar si el usuario tiene permiso
+function tienePermiso(accion) {
+  const rol = obtenerRolActual();
+  const permisos = ROLES[rol];
+  if (!permisos) return false;
+  if (accion === 'riesgos') return permisos.puedeRiesgos;
+  if (accion === 'exportar') return permisos.puedeExportar;
+  return true;
+}
+
+// Abrir pantalla de selección de rol
+function abrirRoles() {
+  const contenedor = document.getElementById('resultados');
+  const rolActual = obtenerRolActual();
+
+  let html = `
+    <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+    <div class="roles-contenedor">
+      <h2>👤 Seleccionar Rol</h2>
+      <p>Elige tu rol para acceder a las funciones correspondientes.</p>
+      <div class="lista-roles">
+  `;
+
+  Object.keys(ROLES).forEach(key => {
+    const r = ROLES[key];
+    const seleccionado = key === rolActual ? 'rol-seleccionado' : '';
+    html += `
+      <div class="tarjeta-rol ${seleccionado}" onclick="seleccionarRol('${key}')">
+        <h3>${r.nombre}</h3>
+        <p>
+          ${r.puedeRiesgos ? '✅' : '❌'} Registrar riesgos<br>
+          ${r.puedeExportar ? '✅' : '❌'} Exportar datos
+        </p>
+      </div>
+    `;
+  });
+
+  html += `
+      </div>
+    </div>
+  `;
+  contenedor.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Seleccionar un rol
+function seleccionarRol(rol) {
+  guardarRol(rol);
+  alert(`✅ Rol cambiado a: ${ROLES[rol].nombre}\n\nLa página se recargará para aplicar los cambios.`);
+  location.reload(); // Recarga la página para actualizar la interfaz
+}
+
+// Ocultar/mostrar botones según el rol
+function actualizarInterfazPorRol() {
+  const btnRiesgos = document.querySelector('.btn-riesgos');
+  const btnDashboard = document.querySelector('.btn-dashboard');
+  const btnExportarJSON = document.querySelector('button[onclick="exportarJSON()"]');
+  const btnExportarCSV = document.querySelector('button[onclick="exportarCSV()"]');
+
+  if (btnRiesgos) {
+    btnRiesgos.style.display = tienePermiso('riesgos') ? 'inline-block' : 'none';
+  }
+
+  if (btnDashboard) {
+    btnDashboard.style.display = tienePermiso('dashboard') ? 'inline-block' : 'none';
+  }
+
+  if (btnExportarJSON) {
+    btnExportarJSON.style.display = tienePermiso('exportar') ? 'inline-block' : 'none';
+  }
+
+  if (btnExportarCSV) {
+    btnExportarCSV.style.display = tienePermiso('exportar') ? 'inline-block' : 'none';
+  }
+}
 // ===== 16. INICIALIZAR AL CARGAR LA PÁGINA =====
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     await cargarCaritasLocales();
     await abrirBaseDatos();
+    actualizarInterfazPorRol();
     console.log('✅ Módulo de riesgos listo con', caritasLocales.length, 'Cáritas locales');
   } catch (error) {
     console.error('❌ Error al inicializar módulo de riesgos:', error);

@@ -1,0 +1,25 @@
+{
+    "documentos": [
+        {
+            "id": "caritas-guia",
+            "titulo": "Guía de Cáritas Cuba - GRD y Consultas",
+            "categoria": "Guías Cáritas",
+            "descripcion": "Manual completo de la app y conceptos básicos de GRD.",
+            "archivo": "documentos/caritas-guia.md"
+        },
+        {
+            "id": "esfera-resumen",
+            "titulo": "Manual Esfera - Resumen para Cáritas Cuba",
+            "categoria": "Normativas Internacionales",
+            "descripcion": "Normas mínimas para la respuesta humanitaria de calidad.",
+            "archivo": "documentos/esfera-resumen.md"
+        },
+        {
+            "id": "ley-149",
+            "titulo": "Ley 149/2022 - Protección de Datos Personales",
+            "categoria": "Legislación Cubana",
+            "descripcion": "Resumen de la ley cubana de protección de datos.",
+            "archivo": "documentos/ley-149.md"
+        }
+    ]
+}
