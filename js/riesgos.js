@@ -817,45 +817,32 @@ async function enviarMensajeIA() {
   // Detectar si hay internet
   if (navigator.onLine) {
     try {
-      // Llamar a DeepSeek
+      // Llamar a Ollama (IA Local)
       const respuesta = await fetch(CONFIG_IA.apiUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${CONFIG_IA.apiKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: CONFIG_IA.modelo,
           messages: [
             { role: 'system', content: 'Eres un experto en Gestión de Riesgo de Desastres para Cáritas Cuba. Responde de forma clara, breve y práctica. Usa el marco de Cáritas Internationalis y Laudato si\'.' },
             { role: 'user', content: texto }
-          ]
+          ],
+          stream: false
         })
       });
 
-      // Verificar si la respuesta es correcta
-      if (!respuesta.ok) {
-        throw new Error(`Error HTTP: ${respuesta.status}`);
-      }
-
       const datos = await respuesta.json();
-      const respuestaIA = datos.choices[0].message.content;
+      const respuestaIA = datos.message.content; // Ollama devuelve la respuesta aquí
 
       document.getElementById(idEscribiendo).remove();
       agregarMensajeChat(respuestaIA, 'bot');
 
     } catch (error) {
       document.getElementById(idEscribiendo).remove();
-      console.error('Error de conexión con DeepSeek:', error);
-
-      // Si el error es por falta de saldo (402)
-      if (error.message.includes('402')) {
-        agregarMensajeChat('⚠️ La cuenta de IA no tiene saldo disponible en este momento.\n\n💡 *Usando el motor de reglas offline para responder.*', 'bot');
-      } else {
-        agregarMensajeChat('⚠️ No se pudo conectar con la IA (posiblemente sin internet).\n\n💡 *Usando el motor de reglas offline.*', 'bot');
-      }
-
-      // Usar el motor de reglas como respaldo
+      console.error('Error de conexión con Ollama:', error);
+      agregarMensajeChat('⚠️ No se pudo conectar con la IA local (Ollama). Asegúrate de que Ollama esté corriendo en tu PC.\n\n💡 *Usando el motor de reglas offline.*', 'bot');
       buscarEnMotorReglas(texto, idEscribiendo);
     }
   } else {

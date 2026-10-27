@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GdR Cáritas Cuba - Consultas</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/presentacion.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a5490">
     <link rel="icon" href="iconos/icono-192.png">
@@ -13,38 +14,91 @@
 
 <body>
     <header>
-        <h1>📚 Consultas GRD</h1>
+        <h1>Consultas GRD</h1>
         <p>Gestión de Riesgo de Desastres - Cáritas Cuba</p>
     </header>
 
     <main>
         <section class="accesos-rapidos">
             <button class="btn-acceso btn-riesgos" onclick="mostrarListaRiesgos()">
-                📋 Riesgos
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.3 3.9 2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" />
+                    <path d="M12 9.5v4" />
+                    <path d="M12 17h.01" />
+                </svg>
+                <span>Riesgos</span>
             </button>
             <button class="btn-acceso btn-consultas" onclick="volverInicio()">
-                📚 Consultas
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.6-3.6" />
+                </svg>
+                <span>Consultas</span>
             </button>
             <button class="btn-acceso btn-biblioteca" onclick="abrirBiblioteca()">
-                📚 Biblioteca
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M2 5.5A1.5 1.5 0 0 1 3.5 4H9a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H3.5A1.5 1.5 0 0 1 2 16z" />
+                    <path
+                        d="M22 5.5A1.5 1.5 0 0 0 20.5 4H15a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5h6A1.5 1.5 0 0 0 22 16z" />
+                </svg>
+                <span>Biblioteca</span>
             </button>
             <button class="btn-acceso btn-formacion" onclick="abrirFormacion()">
-                🎓 Formación
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 9 12 4 2 9l10 5z" />
+                    <path d="M6 11.2V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.8" />
+                    <path d="M22 9v6" />
+                </svg>
+                <span>Formación</span>
             </button>
             <button class="btn-acceso btn-guia" onclick="abrirGuia()">
-                📖 Guía de uso
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M9.5 9.3a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.2-2.5 3.8" />
+                    <path d="M12 17.2h.01" />
+                </svg>
+                <span>Guía de uso</span>
             </button>
             <button class="btn-acceso btn-privacidad" onclick="abrirPrivacidad()">
-                🔒 Privacidad
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4.5" y="10.5" width="15" height="10" rx="2.2" />
+                    <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+                    <path d="M12 14.5v2.2" />
+                </svg>
+                <span>Privacidad</span>
             </button>
             <button class="btn-acceso btn-dashboard" onclick="abrirDashboard()">
-                📊 Dashboard
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20V10" />
+                    <path d="M10 20V4" />
+                    <path d="M16 20v-7" />
+                    <path d="M22 20H2" />
+                </svg>
+                <span>Dashboard</span>
             </button>
             <button class="btn-acceso btn-asistente" onclick="abrirAsistenteIA()">
-                🤖 Asistente IA
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z" />
+                    <path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" />
+                </svg>
+                <span>Asistente IA</span>
             </button>
             <button class="btn-acceso btn-roles" onclick="abrirRoles()">
-                👤 Rol
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
+                </svg>
+                <span>Rol</span>
             </button>
         </section>
         <section class="buscador">
@@ -70,6 +124,7 @@
     <script src="js/config-ia.js"></script>
     <script src="js/chart.js"></script>
     <script src="js/riesgos.js"></script>
+    <script src="js/mejoras.js"></script>
     <script src="js/app.js"></script>
     <script>
         // Registrar el Service Worker para funcionar offline

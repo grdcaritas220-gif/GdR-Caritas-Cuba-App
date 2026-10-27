@@ -1,93 +1,108 @@
 // ============================================
 // SERVICE WORKER - GdR Cáritas Cuba
 // ============================================
+// IMPORTANTE: cada vez que cambies CUALQUIER archivo de la app
+// (contenido, código o estilos), cambia VERSION. Si no, los teléfonos
+// seguirán mostrando la versión vieja guardada en caché.
+const VERSION = '2026.10.27-2';
+const CACHE_NAME = 'gdr-caritas-' + VERSION;
 
-const CACHE_NAME = 'gdr-caritas-v42';
-
-// Archivos que se guardan para funcionar offline
-const ARCHIVOS_CACHE = [
+// Sin estos archivos la app no puede funcionar offline.
+// Si alguno falla al descargarse, la instalación se cancela y el teléfono
+// conserva la versión anterior que ya funcionaba.
+const ARCHIVOS_CRITICOS = [
     './',
     './index.html',
+    './manifest.json',
     './css/estilos.css',
-    './js/app.js',
-    './js/riesgos.js',
+    './css/presentacion.css',
     './js/config-ia.js',
+    './js/chart.js',
+    './js/riesgos.js',
+    './js/mejoras.js',
+    './js/app.js',
     './datos/motor_reglas.json',
     './datos/diocesis.json',
+    './datos/biblioteca.json',
+    './datos/formacion.json',
     './datos/guia-uso.md',
     './datos/privacidad.md',
-    './datos/biblioteca.json',
+    './iconos/icono-192.png',
+    './iconos/icono-512.png'
+];
+
+// Documentos de la biblioteca: si alguno aún no existe, no bloquea la instalación.
+const ARCHIVOS_OPCIONALES = [
     './datos/documentos/caritas-guia.md',
     './datos/documentos/esfera-resumen.md',
     './datos/documentos/ley-149.md',
-    './datos/formacion.json',
-    './manifest.json',
-    './iconos/icono-192.png',
-    './iconos/icono-512.png'
-
+    './datos/documentos/glosario-grd.md',
+    './datos/documentos/defensa-civil-caritas.md'
 ];
 
-// ===== INSTALACIÓN: Guardar archivos =====
+// ===== INSTALACIÓN =====
 self.addEventListener('install', (event) => {
-    console.log('📦 Service Worker: instalando...');
+    event.waitUntil((async () => {
+        const cache = await caches.open(CACHE_NAME);
 
-    event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            console.log('📦 Guardando archivos en caché');
-            return cache.addAll(ARCHIVOS_CACHE);
-        }).then(() => {
-            console.log('✅ Service Worker: instalado');
-            return self.skipWaiting();
-        })
-    );
+        const criticos = await Promise.allSettled(
+            ARCHIVOS_CRITICOS.map((url) => cache.add(url))
+        );
+        const fallidos = ARCHIVOS_CRITICOS.filter((_, i) => criticos[i].status === 'rejected');
+        if (fallidos.length > 0) {
+            // Cancelar: mejor conservar la versión anterior completa que una incompleta.
+            await caches.delete(CACHE_NAME);
+            throw new Error('Archivos críticos no disponibles: ' + fallidos.join(', '));
+        }
+
+        await Promise.allSettled(ARCHIVOS_OPCIONALES.map((url) => cache.add(url)));
+        await self.skipWaiting();
+    })());
 });
 
-// ===== ACTIVACIÓN: Limpiar cachés viejas =====
+// ===== ACTIVACIÓN: borrar cachés viejas =====
 self.addEventListener('activate', (event) => {
-    console.log('🚀 Service Worker: activando...');
-
-    event.waitUntil(
-        caches.keys().then((nombres) => {
-            return Promise.all(
-                nombres.map((nombre) => {
-                    if (nombre !== CACHE_NAME) {
-                        console.log('🗑️ Eliminando caché antigua:', nombre);
-                        return caches.delete(nombre);
-                    }
-                })
-            );
-        }).then(() => {
-            console.log('✅ Service Worker: activado');
-            return self.clients.claim();
-        })
-    );
+    event.waitUntil((async () => {
+        const nombres = await caches.keys();
+        await Promise.all(
+            nombres
+                .filter((n) => n.startsWith('gdr-caritas') && n !== CACHE_NAME)
+                .map((n) => caches.delete(n))
+        );
+        await self.clients.claim();
+    })());
 });
 
-// ===== FETCH: Servir desde caché si no hay internet =====
+// ===== FETCH: caché primero =====
 self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request).then((respuesta) => {
-            // Si está en caché, devolver desde caché
-            if (respuesta) {
-                return respuesta;
-            }
+    const req = event.request;
 
-            // Si no, intentar buscarlo en internet
-            return fetch(event.request).then((respuestaRed) => {
-                // Guardar copia en caché para la próxima vez
-                if (respuestaRed && respuestaRed.status === 200) {
-                    const respuestaClonada = respuestaRed.clone();
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, respuestaClonada);
-                    });
-                }
-                return respuestaRed;
-            }).catch(() => {
-                // Si falla todo, devolver index.html (útil para navegación)
-                if (event.request.mode === 'navigate') {
-                    return caches.match('./index.html');
-                }
+    // Solo gestionamos GET del mismo origen. La llamada a la API de IA (POST,
+    // otro dominio) pasa directo, sin tocar la caché.
+    if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) {
+        return;
+    }
+
+    event.respondWith((async () => {
+        const enCache = await caches.match(req, { ignoreSearch: true });
+        if (enCache) return enCache;
+
+        try {
+            const red = await fetch(req);
+            if (red && red.status === 200) {
+                const copia = red.clone();
+                caches.open(CACHE_NAME).then((c) => c.put(req, copia)).catch(() => { });
+            }
+            return red;
+        } catch (e) {
+            if (req.mode === 'navigate') {
+                const inicio = await caches.match('./index.html');
+                if (inicio) return inicio;
+            }
+            return new Response('Sin conexión y archivo no disponible.', {
+                status: 503,
+                headers: { 'Content-Type': 'text/plain; charset=utf-8' }
             });
-        })
-    );
+        }
+    })());
 });
