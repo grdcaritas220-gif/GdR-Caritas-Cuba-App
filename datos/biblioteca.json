@@ -8,18 +8,25 @@
             "archivo": "documentos/caritas-guia.md"
         },
         {
-            "id": "esfera-resumen",
-            "titulo": "Manual Esfera - Resumen para Cáritas Cuba",
-            "categoria": "Normativas Internacionales",
-            "descripcion": "Normas mínimas para la respuesta humanitaria de calidad.",
-            "archivo": "documentos/esfera-resumen.md"
-        },
-        {
             "id": "ley-149",
             "titulo": "Ley 149/2022 - Protección de Datos Personales",
             "categoria": "Legislación Cubana",
             "descripcion": "Resumen de la ley cubana de protección de datos.",
             "archivo": "documentos/ley-149.md"
+        },
+        {
+            "id": "glosario-grd",
+            "titulo": "Glosario de gestión del riesgo de desastres",
+            "categoria": "Guías Cáritas",
+            "descripcion": "Términos clave explicados en lenguaje de terreno.",
+            "archivo": "documentos/glosario-grd.md"
+        },
+        {
+            "id": "defensa-civil-caritas",
+            "titulo": "Defensa Civil de Cuba y el rol de Cáritas (borrador)",
+            "categoria": "Legislación Cubana",
+            "descripcion": "Cómo se organiza el sistema y qué le corresponde a cada actor.",
+            "archivo": "documentos/defensa-civil-caritas.md"
         }
     ]
 }

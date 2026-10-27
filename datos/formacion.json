@@ -38,6 +38,294 @@
                     "respuesta_correcta": 1
                 }
             ]
+        },
+        {
+            "id": "curso-conceptos",
+            "titulo": "Conceptos clave de la gestión del riesgo de desastres",
+            "nivel": "Básico",
+            "descripcion": "Al terminar, el voluntario distingue amenaza, vulnerabilidad y capacidad, explica cómo se combinan en el riesgo y los aplica al llenar un registro en la app.",
+            "duracion_min": 40,
+            "lecciones": [
+                {
+                    "id": "lec-1",
+                    "titulo": "Un desastre no es lo mismo que una amenaza",
+                    "contenido": "Un huracán, una inundación o una sequía son **amenazas**: fenómenos que pueden causar daño. Un **desastre** ocurre cuando una amenaza golpea a una comunidad que no está preparada para resistirla.\n\nPor eso se dice que *los desastres no son naturales*: la lluvia es natural, pero que el agua entre en las casas depende de dónde y cómo están construidas, de si hay alerta y de si la gente sabe qué hacer.\n\n**Idea clave:** la gestión del riesgo trabaja sobre lo que sí podemos cambiar, que es la vulnerabilidad y la capacidad, no sobre la amenaza.\n\n**Ejemplo en Cuba:** el mismo ciclón puede ser un susto en una comunidad con casas de mampostería, refugio cercano y vecinos organizados, y una tragedia en otra con viviendas de techo ligero, sin refugio y con adultos mayores solos."
+                },
+                {
+                    "id": "lec-2",
+                    "titulo": "Amenaza, vulnerabilidad y capacidad",
+                    "contenido": "**Amenaza:** qué puede pasar. Ej.: penetración del mar, inundación por lluvias intensas, sequía, incendio forestal, epidemia.\n\n**Vulnerabilidad:** qué hace que ese daño sea mayor. Puede ser física (vivienda en mal estado), social (personas mayores solas, embarazadas, personas con discapacidad), económica (sin ahorros ni medios de vida alternativos) o de información (no llega la alerta).\n\n**Capacidad:** con qué contamos para reducir el daño. Ej.: líderes comunitarios, un refugio, un grupo de voluntarios formado, un plan familiar, solidaridad entre vecinos.\n\n**Pregunta práctica para el terreno:** ¿qué puede pasar? ¿a quién y a qué afectaría más? ¿con qué contamos para responder?"
+                },
+                {
+                    "id": "lec-3",
+                    "titulo": "Cómo se combinan: la fórmula del riesgo",
+                    "contenido": "**Riesgo = Amenaza × Vulnerabilidad ÷ Capacidad**\n\nNo es una fórmula matemática exacta, es una forma de pensar:\n- Si sube la amenaza o la vulnerabilidad, el riesgo sube.\n- Si sube la capacidad, el riesgo baja.\n- Si la amenaza es cero, el riesgo es cero. Si la capacidad es muy alta, el riesgo se reduce mucho.\n\n**En la app:** el nivel de riesgo se calcula con *Probabilidad × Impacto*. La **probabilidad** viene de la amenaza (¿qué tan probable es que ocurra?). El **impacto** debe estimarse pensando en la vulnerabilidad (más vulnerabilidad, más impacto) y la capacidad (más capacidad, menos impacto).\n\nPor eso, antes de elegir Probabilidad e Impacto, el voluntario debe haber descrito bien Amenaza, Vulnerabilidad y Capacidad. Esos campos son la justificación de los números."
+                },
+                {
+                    "id": "lec-4",
+                    "titulo": "Ejemplo resuelto: una comunidad costera",
+                    "contenido": "**Situación:** barrio costero con inundación por penetración del mar en cada temporada ciclónica.\n\n- **Amenaza:** penetración del mar con ciclones. Probabilidad alta (ocurre casi cada temporada).\n- **Vulnerabilidad:** 18 viviendas de bajo puntal a menos de 100 m de la costa; 6 adultos mayores que viven solos; una sola vía de salida que se inunda.\n- **Capacidad:** la delegada del barrio conoce a todas las familias; hay una escuela alta cercana usable como refugio; 5 voluntarios ya formados.\n- **Impacto:** alto, por las viviendas y la única vía de salida, aunque la capacidad lo atenúa algo.\n- **Resultado en la app:** riesgo Alto.\n\n**Acciones sugeridas:** lista de personas que necesitan apoyo para evacuar, ruta alternativa de salida, coordinación con la Defensa Civil para el refugio, simulacro antes de la temporada."
+                },
+                {
+                    "id": "lec-5",
+                    "titulo": "El ciclo de la gestión del riesgo",
+                    "contenido": "La gestión del riesgo no empieza cuando llega el desastre. Tiene cuatro momentos:\n\n1. **Prevención y mitigación:** reducir el riesgo antes de que ocurra (reforzar techos, limpiar drenajes, reforestar).\n2. **Preparación:** estar listos (planes familiares, kits de emergencia, simulacros, listas de personas con necesidades especiales).\n3. **Respuesta:** actuar durante y justo después (alertar, evacuar, atender necesidades básicas).\n4. **Recuperación:** reconstruir mejor, sin recrear la vulnerabilidad anterior.\n\nLa app sirve sobre todo en los dos primeros: registrar riesgos y planificar acciones. Cuanto más se invierte ahí, menos se sufre en los dos últimos."
+                },
+                {
+                    "id": "lec-6",
+                    "titulo": "Por qué esto es parte de la misión de Cáritas",
+                    "contenido": "Los desastres golpean con más fuerza a quienes ya son más frágiles: personas mayores, personas solas, familias con pocos recursos, personas con discapacidad. Cuidar de ellos antes del desastre es una forma concreta de servicio.\n\nLa encíclica *Laudato si'* nos recuerda que *el clamor de la tierra y el clamor de los pobres* están unidos. Cuidar la casa común (limpiar cauces, cuidar manglares y bosques) también reduce el riesgo para los más pobres.\n\nTodo esto se hace **en coordinación con el Sistema de la Defensa Civil**, que dirige la alerta y la protección de la población. El rol de Cáritas es acompañar, informar y servir a las personas más vulnerables, nunca sustituir ni contradecir esa dirección."
+                }
+            ],
+            "quiz": [
+                {
+                    "pregunta": "Una comunidad vive junto a un río que se desborda cada dos años. Hay 12 familias en zona baja, un puente que se inunda y una brigada de vecinos que ya hizo un simulacro. ¿Qué es la brigada y el simulacro dentro del análisis de riesgo?",
+                    "opciones": [
+                        "Una amenaza",
+                        "Una vulnerabilidad",
+                        "Una capacidad",
+                        "Un desastre"
+                    ],
+                    "respuesta_correcta": 2,
+                    "explicacion": "Son capacidades: recursos que la comunidad ya tiene para reducir el daño. Las 12 familias en zona baja y el puente que se inunda son vulnerabilidades.",
+                    "leccion_repaso": "lec-2"
+                },
+                {
+                    "pregunta": "En el registro de un riesgo, el voluntario escribe en 'Vulnerabilidad' que hay 8 adultos mayores solos y en 'Capacidad' que no hay ningún líder comunitario. ¿Cómo debería reflejarse esto en el Impacto?",
+                    "opciones": [
+                        "No afecta al Impacto, solo a la Probabilidad",
+                        "Tiende a un Impacto más alto",
+                        "Tiende a un Impacto más bajo",
+                        "Se deja en blanco"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "Más vulnerabilidad y menos capacidad significan un impacto potencial más alto. La Probabilidad responde a la amenaza, no a la vulnerabilidad.",
+                    "leccion_repaso": "lec-3"
+                },
+                {
+                    "pregunta": "¿Cuál de estas afirmaciones es la más correcta?",
+                    "opciones": [
+                        "Un huracán es siempre un desastre",
+                        "Un desastre ocurre cuando una amenaza afecta a una comunidad vulnerable y poco preparada",
+                        "Los desastres no se pueden prevenir",
+                        "La vulnerabilidad es lo mismo que la amenaza"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "La amenaza es el fenómeno; el desastre es el resultado cuando se encuentra con vulnerabilidad y poca capacidad.",
+                    "leccion_repaso": "lec-1"
+                },
+                {
+                    "pregunta": "Se anuncia un ciclón. Un voluntario piensa organizar por su cuenta la evacuación de su barrio sin consultar a nadie. ¿Qué es lo más adecuado?",
+                    "opciones": [
+                        "Hacerlo, porque conoce bien el barrio",
+                        "Coordinar con el delegado y la Defensa Civil, y apoyar con la lista de personas que necesitan ayuda",
+                        "Esperar a que pase el ciclón",
+                        "Publicar la alerta en redes sociales"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "La alerta y la evacuación las dirige el Sistema de la Defensa Civil. Cáritas apoya aportando conocimiento de las personas más vulnerables y acompañándolas.",
+                    "leccion_repaso": "lec-6"
+                },
+                {
+                    "pregunta": "Reforzar los techos de las viviendas antes de la temporada ciclónica corresponde a:",
+                    "opciones": [
+                        "Respuesta",
+                        "Recuperación",
+                        "Prevención y mitigación",
+                        "Ninguna de las anteriores"
+                    ],
+                    "respuesta_correcta": 2,
+                    "explicacion": "Es prevención y mitigación: reduce la vulnerabilidad antes de que ocurra el evento.",
+                    "leccion_repaso": "lec-5"
+                }
+            ]
+        },
+        {
+            "id": "curso-defensa-civil",
+            "titulo": "El Sistema de Defensa Civil y el rol de Cáritas",
+            "nivel": "Básico",
+            "descripcion": "Entender cómo se organiza la protección de la población en Cuba y dónde encaja el trabajo de Cáritas.",
+            "duracion_min": 30,
+            "lecciones": [
+                {
+                    "id": "dc-1",
+                    "titulo": "Quién dirige la protección de la población",
+                    "contenido": "En Cuba, la reducción del riesgo de desastres se organiza a través del **Sistema de la Defensa Civil**, que integra todos los niveles del Estado, del nacional al local. Su principal órgano de dirección es el **Estado Mayor Nacional de la Defensa Civil**.\n\nEn cada territorio, los **Consejos de Defensa** dirigen las medidas de protección y existe un **Plan de Reducción del Riesgo de Desastre**.\n\n**Idea clave:** ante una emergencia hay una dirección oficial. Cáritas no la sustituye: la complementa."
+                },
+                {
+                    "id": "dc-2",
+                    "titulo": "Las fases ante un evento",
+                    "contenido": "Ante eventos como los ciclones, el Sistema de la Defensa Civil organiza la respuesta por fases, desde una fase informativa, pasando por la de alerta y la de alarma, hasta la fase recuperativa.\n\nCada fase indica qué debe hacer la población y qué medidas se activan. **Antes de la temporada, pregunta a tu delegado o a la Defensa Civil de tu territorio cómo se aplican las fases en tu comunidad.**\n\nPara el voluntario, lo importante es una regla simple: **se difunde la información oficial, no se inventa ni se anticipa**."
+                },
+                {
+                    "id": "dc-3",
+                    "titulo": "Qué le toca a Cáritas",
+                    "contenido": "Cáritas aporta algo que los sistemas oficiales a veces no alcanzan: **conocer de cerca a las personas más vulnerables**.\n\n- Mantener actualizada la lista de personas mayores solas, personas con discapacidad, embarazadas y familias en situación frágil.\n- Acompañar a esas personas en la preparación y, si procede, en la evacuación.\n- Difundir las orientaciones oficiales con lenguaje sencillo.\n- Apoyar la recuperación de las familias afectadas, según la misión de la institución.\n\nLo que **no** corresponde: emitir alertas propias, ordenar evacuaciones o contradecir indicaciones oficiales."
+                },
+                {
+                    "id": "dc-4",
+                    "titulo": "Cómo coordinar en la práctica",
+                    "contenido": "Antes de actuar, responde tres preguntas:\n\n1. ¿Quién dirige la respuesta en mi territorio y cómo lo contacto?\n2. ¿Hay una alerta oficial activa? ¿En qué fase estamos?\n3. ¿Lo que voy a hacer complementa lo oficial o lo contradice?\n\nCada Cáritas Local debe tener anotado, **antes** de la temporada ciclónica, el nombre y contacto de su enlace de coordinación. Si no lo tienes, pídele a tu coordinador local que lo gestione."
+                }
+            ],
+            "quiz": [
+                {
+                    "pregunta": "Llega un aviso de ciclón. ¿Qué haces con la información?",
+                    "opciones": [
+                        "La difundo sin cambios, tal como la emitió la fuente oficial",
+                        "Le agrego mis propias predicciones para que se entienda mejor",
+                        "Espero a que otros la confirmen en redes sociales",
+                        "Organizo una evacuación por mi cuenta"
+                    ],
+                    "respuesta_correcta": 0,
+                    "explicacion": "Se difunde la información oficial tal cual. Añadir predicciones propias puede generar confusión o pánico.",
+                    "leccion_repaso": "dc-2"
+                },
+                {
+                    "pregunta": "¿Cuál es el principal aporte de Cáritas ante una emergencia?",
+                    "opciones": [
+                        "Dirigir la evacuación",
+                        "Emitir alertas",
+                        "Conocer de cerca a las personas más vulnerables y acompañarlas",
+                        "Sustituir al Consejo de Defensa"
+                    ],
+                    "respuesta_correcta": 2,
+                    "explicacion": "Cáritas complementa lo oficial con su cercanía a las personas más frágiles.",
+                    "leccion_repaso": "dc-3"
+                },
+                {
+                    "pregunta": "Un voluntario cree que el Consejo de Defensa de su zona se equivoca al indicar un punto de evacuación. ¿Qué es lo más adecuado?",
+                    "opciones": [
+                        "Decirle a la gente que no vaya",
+                        "Plantear la inquietud al coordinador local y al enlace con la Defensa Civil, y seguir la indicación oficial mientras tanto",
+                        "Publicarlo en un grupo de mensajería",
+                        "Ignorar la indicación"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "Las dudas se canalizan por la vía institucional. Contradecir en público puede poner en riesgo a las personas.",
+                    "leccion_repaso": "dc-4"
+                },
+                {
+                    "pregunta": "¿Cuándo debe tener Cáritas Local los contactos de coordinación con la Defensa Civil?",
+                    "opciones": [
+                        "Cuando se declare la alarma",
+                        "Después del evento",
+                        "Antes de la temporada ciclónica",
+                        "Solo si la Defensa Civil los pide"
+                    ],
+                    "respuesta_correcta": 2,
+                    "explicacion": "La coordinación se prepara con tiempo. En plena emergencia ya no hay margen para buscar contactos.",
+                    "leccion_repaso": "dc-4"
+                },
+                {
+                    "pregunta": "¿Cuál de estas acciones SÍ corresponde a Cáritas?",
+                    "opciones": [
+                        "Mantener actualizada la lista de personas mayores solas",
+                        "Ordenar el cierre de una vía",
+                        "Declarar una fase de alerta",
+                        "Decidir quién se evacua primero sin consultar"
+                    ],
+                    "respuesta_correcta": 0,
+                    "explicacion": "Conocer y acompañar a las personas vulnerables es el aporte propio de Cáritas.",
+                    "leccion_repaso": "dc-3"
+                }
+            ]
+        },
+        {
+            "id": "curso-proteccion-datos",
+            "titulo": "Protección de las personas y de sus datos",
+            "nivel": "Básico",
+            "descripcion": "Trabajar con personas afectadas sin hacerles daño: respeto, protección y manejo cuidadoso de la información que recogemos.",
+            "duracion_min": 35,
+            "lecciones": [
+                {
+                    "id": "pd-1",
+                    "titulo": "Primero, no hacer daño",
+                    "contenido": "Todo lo que hacemos en terreno puede ayudar o perjudicar. El principio más básico de la respuesta humanitaria es **no causar daño**.\n\nEjemplos de daño sin querer:\n- Publicar la foto de una familia afectada sin su permiso.\n- Anotar en una lista pública que alguien vive solo.\n- Preguntar a una persona en duelo delante de otros.\n- Prometer ayuda que no se puede garantizar.\n\n**Pregunta de control:** si esta persona viera lo que voy a hacer con su información o su imagen, ¿se sentiría respetada?"
+                },
+                {
+                    "id": "pd-2",
+                    "titulo": "Protección y salvaguarda",
+                    "contenido": "Las personas afectadas por un desastre deben estar protegidas de la violencia, el abuso y la explotación. Cáritas Internationalis incluye la **salvaguarda** como uno de los estándares de gestión de la red: quienes trabajan o sirven en nombre de Cáritas tienen la obligación de proteger, en especial a niñas, niños, adolescentes y personas adultas en situación de vulnerabilidad.\n\nEn la práctica:\n- Nunca quedarse a solas con un menor en un espacio cerrado.\n- Nunca pedir ni aceptar favores a cambio de ayuda.\n- Dar la ayuda con criterios claros y conocidos, no por preferencias personales.\n- Si ves o sospechas un abuso, **informa de inmediato a tu coordinador**. No lo investigues por tu cuenta ni lo comentes con terceros."
+                },
+                {
+                    "id": "pd-3",
+                    "titulo": "Qué datos recogemos y por qué",
+                    "contenido": "La app guarda información sobre riesgos en comunidades. A veces esa información puede identificar a personas: nombres, direcciones, condiciones de salud, discapacidades.\n\nLa regla de oro es la **mínima información necesaria**:\n- Registra solo lo que realmente necesitas para actuar.\n- Si basta con decir «6 adultos mayores solos en la cuadra», no escribas sus nombres.\n- Si necesitas nombres para acompañar a alguien, pídele permiso y explícale para qué.\n- No registres datos de salud, religión u otros datos sensibles salvo que sea imprescindible y la persona lo acepte."
+                },
+                {
+                    "id": "pd-4",
+                    "titulo": "Consentimiento y derechos",
+                    "contenido": "Antes de anotar datos personales:\n1. Explica quién eres y para qué usarás la información.\n2. Pregunta si la persona está de acuerdo.\n3. Respeta un «no». No condiciones la ayuda al consentimiento.\n\nLa persona tiene derecho a saber qué datos tuyos tienes, a corregirlos y a pedir que se eliminen. La app lo recoge en su política de privacidad, basada en la Ley 149/2022 de protección de datos personales. Si tienes dudas sobre los alcances legales, consulta con tu coordinador y con la asesoría de Cáritas."
+                },
+                {
+                    "id": "pd-5",
+                    "titulo": "Cuidar los archivos que circulan",
+                    "contenido": "La app guarda los datos en tu dispositivo y los comparte por archivos `.json` y `.csv`. Esos archivos pueden contener información delicada.\n\n- Protege tu teléfono o computadora con contraseña o patrón.\n- Envía los archivos solo a tu coordinador local, por la vía acordada. No los publiques en grupos abiertos.\n- No dejes copias en dispositivos compartidos o de uso público.\n- Cuando el coordinador confirme que los recibió y consolidó, borra las copias que ya no necesites.\n- Si pierdes el dispositivo, avisa de inmediato a tu coordinador.\n\n**Importante:** el asistente en línea envía las preguntas a un servicio externo. **Nunca escribas nombres ni datos personales en él.**"
+                }
+            ],
+            "quiz": [
+                {
+                    "pregunta": "Una familia afectada acepta ayuda pero no quiere que su caso se registre con nombre. ¿Qué haces?",
+                    "opciones": [
+                        "Registro el nombre de todos modos, por si acaso",
+                        "Dejo de ayudar hasta que acepte",
+                        "Registro solo la información general sin identificarlos y sigo ayudando",
+                        "Pido permiso a un vecino para registrarla"
+                    ],
+                    "respuesta_correcta": 2,
+                    "explicacion": "El consentimiento se respeta y la ayuda no se condiciona. Se puede registrar lo necesario sin identificar a las personas.",
+                    "leccion_repaso": "pd-4"
+                },
+                {
+                    "pregunta": "Quieres consultar al asistente en línea sobre el caso de una señora de 82 años que vive sola en una dirección concreta. ¿Qué es lo correcto?",
+                    "opciones": [
+                        "Escribo su nombre y dirección para que la respuesta sea precisa",
+                        "Planteo la pregunta en general, sin nombre, dirección ni datos que la identifiquen",
+                        "Escribo solo el nombre",
+                        "Pido a la señora que lo escriba ella"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "El asistente en línea usa un servicio externo. Nunca se introducen datos que identifiquen a personas.",
+                    "leccion_repaso": "pd-5"
+                },
+                {
+                    "pregunta": "Notas que un compañero voluntario pide favores personales a una joven a cambio de entregarle ayuda. ¿Qué haces?",
+                    "opciones": [
+                        "Hablo con él y le pido que no lo repita, sin decir nada a nadie más",
+                        "Informo de inmediato al coordinador, sin investigar por mi cuenta",
+                        "Lo comento con otros voluntarios para ver qué opinan",
+                        "No hago nada porque no estoy seguro"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "Es una posible explotación. Se informa de inmediato por la vía institucional, sin investigar ni difundir el caso.",
+                    "leccion_repaso": "pd-2"
+                },
+                {
+                    "pregunta": "Terminaste de enviar tu archivo `.json` al coordinador y confirmó que lo recibió. ¿Qué haces con las copias que quedaron en el teléfono?",
+                    "opciones": [
+                        "Las conservo todas indefinidamente",
+                        "Borro las que ya no necesito",
+                        "Las subo a un grupo de mensajería por si se pierden",
+                        "Las comparto con otro voluntario como respaldo"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "Se conserva solo lo necesario. Cuanto menos copias de datos sensibles circulen, menos riesgo.",
+                    "leccion_repaso": "pd-5"
+                },
+                {
+                    "pregunta": "¿Cuál de estas es una buena práctica al registrar un riesgo en la app?",
+                    "opciones": [
+                        "Anotar nombre, edad, enfermedad y dirección de cada persona vulnerable",
+                        "Escribir «6 adultos mayores solos en la cuadra» sin nombres, si no necesito más",
+                        "Tomar fotos de las casas y de las personas para publicarlas",
+                        "Poner datos de salud de todos para estar seguros"
+                    ],
+                    "respuesta_correcta": 1,
+                    "explicacion": "Mínima información necesaria. Si no se requiere identificar, no se identifica.",
+                    "leccion_repaso": "pd-3"
+                }
+            ]
         }
     ]
 }
