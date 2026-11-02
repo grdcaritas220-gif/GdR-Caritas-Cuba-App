@@ -275,8 +275,8 @@
       const enc = ['ID', 'Fecha Identificación', 'Cáritas Local', 'Código', 'Título', 'Categoría', 'Probabilidad',
         'Impacto', 'Nivel', 'Clasificación', 'Responsable', 'Tratamiento', 'Estado', 'Zona', 'Población', 'Descripción'];
       const filas = riesgos.map(r => [r.id, r.fecha_identificacion, r.caritas_local, r.caritas_codigo, r.titulo,
-        r.categoria, r.probabilidad, r.impacto, r.nivel_riesgo, r.clasificacion, r.responsable, r.tratamiento,
-        r.estado, r.zona_geografica, r.poblacion_afectada, r.descripcion]);
+      r.categoria, r.probabilidad, r.impacto, r.nivel_riesgo, r.clasificacion, r.responsable, r.tratamiento,
+      r.estado, r.zona_geografica, r.poblacion_afectada, r.descripcion]);
       const csv = [enc.map(celdaCSV).join(';'), ...filas.map(f => f.map(celdaCSV).join(';'))].join('\n');
       const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -377,6 +377,21 @@
     return false;
   }
 
+  // ===== ABRIR CURSO CLÍMACO Y MAGNOLIA =====
+  function abrirCursoClimaco() {
+    const contenedor = document.getElementById('resultados');
+    contenedor.innerHTML = `
+    <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <iframe 
+        src="gestion-del-riesgo/index.html" 
+        style="width: 100%; height: 80vh; border: 0; display: block;"
+        title="Curso Gestión del Riesgo - Clímaco y Magnolia"
+      ></iframe>
+    </div>
+  `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   if (typeof document !== 'undefined') {
     document.addEventListener('DOMContentLoaded', async () => {
       pedirPersistencia();
@@ -451,3 +466,151 @@
   // Para pruebas automáticas (no se usa en la app)
   window.GDR_MEJORAS = { normalizar, tokens, buscarMejores, validarRiesgo, celdaCSV, limpiarTexto, escaparHTML };
 })();
+// ===== PARCHE PARA INTEGRAR EL CURSO CLÍMACO EN FORMACIÓN =====
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    // Guardamos la función original por si la necesitamos después (opcional)
+    if (typeof window.abrirFormacion === 'function') {
+      window.abrirFormacionOriginal = window.abrirFormacion;
+    }
+
+    // 1. Esta función reemplaza la pantalla de Formación por la tarjeta dorada
+    window.abrirFormacion = function () {
+      const contenedor = document.getElementById('resultados');
+      contenedor.innerHTML = `
+                <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+                <div class="formacion-contenedor" style="padding: 20px; text-align: center;">
+                    <h2 style="color: #0b3b60;">Formación en GRD</h2>
+                    <p>Curso oficial de Cáritas Cuba</p>
+                    
+                    <div class="tarjeta-curso" style="border: 2px solid #f2a900; border-radius: 12px; padding: 20px; background: #fffdf5; margin-top: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <h3 style="color: #0b3b60; margin-top: 0;">Gestión del Riesgo - Con Clímaco y Magnolia</h3>
+                        <p><strong>Curso interactivo completo (25 módulos)</strong></p>
+                        <p>Aprende con Clímaco y la Profesora Magnolia a través de historias, decisiones y ejercicios prácticos.</p>
+                        
+                        <button onclick="abrirCursoClimaco()" style="background: #f2a900; color: #000; font-weight: bold; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 15px;">
+                            Comenzar Curso Interactivo
+                        </button>
+                        <button onclick="exportarConstancia()" style="background: #4CAF50; color: white; font-weight: bold; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 15px; display: block; width: 100%;">
+                    📥 Exportar mi constancia de participación
+                </button>                                
+                </div>
+             `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // 2. Esta función abre el iframe de Clímaco
+    window.abrirCursoClimaco = function () {
+      const contenedor = document.getElementById('resultados');
+      contenedor.innerHTML = `
+                <button class="btn-volver" onclick="abrirFormacion()">← Volver a Formación</button>
+                <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 15px;">
+                    <iframe 
+                        src="gestion-del-riesgo/index.html" 
+                        style="width: 100%; height: 80vh; border: 0; display: block;" 
+                        title="Curso Gestión del Riesgo - Clímaco y Magnolia"
+                    ></iframe>
+                </div>
+            `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  }, 100); // Espera 100ms para que cargue el resto de la app
+});
+// Variable global para guardar el progreso real que envía el curso
+window.progresoClimaco = 0;
+
+// Escuchamos los mensajes que vienen del iframe del curso
+window.addEventListener('message', function (event) {
+  if (event.data && event.data.tipo === 'PROGRESO_CURSO') {
+    window.progresoClimaco = event.data.porcentaje;
+  }
+});
+
+// ===== EXPORTAR CONSTANCIA COMO IMAGEN =====
+window.exportarConstancia = function () {
+  const nombre = prompt("Escribe tu nombre y apellidos:");
+  if (!nombre || nombre.trim() === "") {
+    alert("El nombre es obligatorio.");
+    return;
+  }
+  // LEEMOS DIRECTAMENTE LA MEMORIA DEL CURSO (Solución infalible)
+  let porcentaje = 0;
+  try {
+    const estadoGuardado = localStorage.getItem('climaco_avance_v1');
+    if (estadoGuardado) {
+      const datos = JSON.parse(estadoGuardado);
+      // Contamos los módulos avanzados (B1, B2, I1, E1, etc.)
+      const modulosAvanzados = Object.keys(datos).filter(k => k.startsWith('B') || k.startsWith('I') || k.startsWith('E')).length;
+      porcentaje = Math.min(100, Math.round((modulosAvanzados / 25) * 100));
+      console.log("Módulos detectados:", modulosAvanzados, "Porcentaje:", porcentaje);
+    } else {
+      console.log("No se encontró la clave 'climaco_avance_v1' en la memoria.");
+    }
+  } catch (e) {
+    console.error("Error al leer el progreso:", e);
+  }
+
+  const fecha = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  // 1. Creamos un lienzo (canvas) invisible
+  const canvas = document.createElement('canvas');
+  canvas.width = 800;
+  canvas.height = 1100;
+  const ctx = canvas.getContext('2d');
+
+  // 2. Fondo blanco
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // 3. Franja superior azul (estilo Cáritas)
+  ctx.fillStyle = '#0b3b60';
+  ctx.fillRect(0, 0, canvas.width, 150);
+
+  // 4. Escribimos el texto
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 40px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('CÁRITAS CUBA - GRD', 400, 70);
+  ctx.font = '30px Arial';
+  ctx.fillText('Reporte Oficial de Avance', 400, 120);
+
+  // 5. Texto del reporte
+  ctx.fillStyle = '#000000';
+  ctx.textAlign = 'left';
+  ctx.font = '24px Arial';
+
+  let y = 220;
+  const lineHeight = 40;
+
+  ctx.fillText('Se hace constar que:', 60, y); y += lineHeight * 1.5;
+
+  ctx.font = 'bold 32px Arial';
+  ctx.fillText(nombre, 60, y); y += lineHeight * 2;
+
+  ctx.font = '24px Arial';
+  ctx.fillText(`Ha completado el ${porcentaje}% del curso:`, 60, y); y += lineHeight;
+  ctx.fillText('Gestión del Riesgo - Con Clímaco y Magnolia', 60, y); y += lineHeight * 2;
+
+  ctx.fillText(`Fecha de emisión: ${fecha}`, 60, y); y += lineHeight * 2.5;
+
+  ctx.font = 'italic 18px Arial';
+  ctx.fillStyle = '#555555';
+  ctx.fillText('Este es un reporte de avance offline.', 60, y); y += 30;
+  ctx.fillText('El coordinador local debe verificar el certificado del curso', 60, y); y += 30;
+  ctx.fillText('para dar fe de las competencias en GRD.', 60, y);
+
+  // 6. Convertimos el lienzo en una imagen descargable
+  canvas.toBlob(function (blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    // Forzamos la descarga como imagen .png
+    a.download = `Reporte_${nombre.replace(/\s+/g, '_')}_${porcentaje}pct.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert(`¡Reporte generado con el ${porcentaje}% real de avance! Se ha guardado como imagen en tu teléfono.`);
+  }, 'image/png');
+};

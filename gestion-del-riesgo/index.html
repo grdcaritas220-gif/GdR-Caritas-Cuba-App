@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestión del Riesgo - Con Clímaco y Magnolia</title>
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+    <header>
+        <h1>Gestión del Riesgo - Con Clímaco y Magnolia</h1>
+        <span class="tag" id="ia-status" style="display: none;">IA local: comprobando...</span>
+        <button class="btn" id="btn-ask" style="display: none;">💬 Pregúntale a Clímaco</button>
+        <button class="btn ghost" id="btn-amenos" aria-label="Letra más pequeña"
+            style="color:#fff;border-color:#fff">A−</button>
+        <button class="btn ghost" id="btn-amas" aria-label="Letra más grande"
+            style="color:#fff;border-color:#fff">A+</button>
+        <button class="btn ghost" id="btn-menu" style="color:#fff;border-color:#fff">Menú</button>
+    </header>
+    <div class="app">
+        <aside>
+            <div class="bubble" id="bubble" aria-live="polite">¡Epa! Soy Clímaco. Vamos a aprender juntos.</div>
+            <div id="cl" class="cl-img" data-estado="neutro" role="img"
+                aria-label="Clímaco Prevenildo, hombre sonriente con sombrero de yarey y camisa clara"></div>
+            <div id="mg" class="cl-img" hidden role="img"
+                aria-label="Profesora Magnolia, mujer sonriente de pelo rizado con una flor blanca en la camiseta">
+            </div>
+
+        </aside>
+        <main id="main"></main>
+    </div>
+    <div class="panel" id="panel" hidden>
+        <h3 style="margin:0 0 6px">Pregúntale a Clímaco</h3>
+        <p class="src" id="ask-note">Responde solo con lo que está en este módulo.</p>
+        <input type="text" id="ask-q" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta">
+        <div class="row"><button class="btn" id="ask-go">Preguntar</button><button class="btn ghost"
+                id="ask-close">Cerrar</button></div>
+        <div id="ask-out" aria-live="polite"></div>
+    </div>
+    <script src="curso.js"></script>
+</body>
+
+</html>

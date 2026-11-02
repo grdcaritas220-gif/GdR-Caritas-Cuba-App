@@ -4,9 +4,8 @@
 // IMPORTANTE: cada vez que cambies CUALQUIER archivo de la app
 // (contenido, código o estilos), cambia VERSION. Si no, los teléfonos
 // seguirán mostrando la versión vieja guardada en caché.
-const VERSION = '2026.10.27-2';
+const VERSION = '2026.11.02-14';
 const CACHE_NAME = 'gdr-caritas-' + VERSION;
-
 // Sin estos archivos la app no puede funcionar offline.
 // Si alguno falla al descargarse, la instalación se cancela y el teléfono
 // conserva la versión anterior que ya funcionaba.
@@ -16,6 +15,7 @@ const ARCHIVOS_CRITICOS = [
     './manifest.json',
     './css/estilos.css',
     './css/presentacion.css',
+    './css/pantallas.css',
     './js/config-ia.js',
     './js/chart.js',
     './js/riesgos.js',
@@ -28,9 +28,11 @@ const ARCHIVOS_CRITICOS = [
     './datos/guia-uso.md',
     './datos/privacidad.md',
     './iconos/icono-192.png',
-    './iconos/icono-512.png'
+    './iconos/icono-512.png',
+    './gestion-del-riesgo/index.html',
+    './gestion-del-riesgo/curso.css',
+    './gestion-del-riesgo/curso.js',
 ];
-
 // Documentos de la biblioteca: si alguno aún no existe, no bloquea la instalación.
 const ARCHIVOS_OPCIONALES = [
     './datos/documentos/caritas-guia.md',
