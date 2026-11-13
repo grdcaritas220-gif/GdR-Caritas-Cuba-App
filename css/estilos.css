@@ -989,3 +989,8 @@ footer {
     color: #444;
     line-height: 1.6;
 }
+
+/* Ocultar el mensaje inicial por defecto */
+.mensaje-inicial {
+    display: none;
+}

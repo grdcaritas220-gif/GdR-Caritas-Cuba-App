@@ -1,0 +1,45 @@
+/* bitacora.css — pantalla del coordinador. Quitar el <link> para volver atrás. */
+.bitacora{ background:#fff; border:1px solid var(--borde,#d9e1e8); border-radius:14px; padding:18px; margin-bottom:16px; }
+.bitacora h2{ color:var(--azul-osc,#123c68); margin-bottom:6px; }
+.bitacora h3{ font-size:1rem; color:var(--azul-osc,#123c68); margin:16px 0 8px; }
+.bit-sub{ color:#9b1c1c; font-size:.85rem; margin-bottom:10px; font-weight:600; }
+.bit-barra{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.bit-tab{ min-height:40px; padding:8px 12px; border-radius:10px; border:1px solid var(--borde,#d9e1e8); background:#fff; color:var(--azul,#1a5490); font-weight:600; cursor:pointer; font-size:.88rem; }
+.bit-tab.activa{ background:var(--azul,#1a5490); color:#fff; border-color:var(--azul,#1a5490); }
+.bit-form{ display:flex; flex-direction:column; gap:10px; max-width:460px; }
+.bit-form label,.bit-buscar{ display:flex; flex-direction:column; gap:4px; font-weight:600; font-size:.92rem; }
+.bit-form input:not([type=checkbox]),.bit-form select,.bit-buscar input,.bit-ta{ min-height:44px; padding:10px 12px; border:2px solid var(--borde,#d9e1e8); border-radius:10px; font-size:1rem; font-family:inherit; width:100%; }
+.bit-ta{ font-family:monospace; margin-bottom:10px; }
+.bit-check{ flex-direction:row !important; align-items:flex-start; font-weight:400 !important; gap:8px !important; }
+.bit-check input{ margin-top:4px; }
+.bit-caja{ background:#f4f6f8; border-radius:12px; padding:14px; max-width:none; }
+.bit-fila{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }
+.bit-archivo{ display:inline-flex; align-items:center; cursor:pointer; }
+.bit-msg{ padding:10px 12px; border-radius:10px; margin:10px 0; font-size:.92rem; }
+.bit-ok{ background:#e3f4e6; color:#1f6a2a; }
+.bit-mal{ background:#fde8e8; color:#9b1c1c; }
+.bit-aviso{ background:#fff4cc; color:#7a5600; }
+.bit-nota{ color:#5b6773; font-size:.85rem; margin:8px 0; }
+.bit-cifras{ display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:12px; }
+.bit-cifras div{ background:#e8f0f8; border-radius:12px; padding:12px; text-align:center; font-size:.85rem; }
+.bit-cifras b{ display:block; font-size:1.7rem; color:var(--azul-osc,#123c68); }
+.bit-tabla{ width:100%; border-collapse:collapse; font-size:.9rem; margin-bottom:8px; }
+.bit-tabla th,.bit-tabla td{ border-bottom:1px solid var(--borde,#d9e1e8); padding:6px 8px; text-align:left; }
+.bit-tabla th{ background:#f4f6f8; }
+.bit-lista{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+.bit-persona{ border:1px solid var(--borde,#d9e1e8); border-radius:12px; padding:10px 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center; font-size:.9rem; }
+.bit-cod{ font-family:monospace; background:#e8f0f8; border-radius:6px; padding:1px 6px; }
+.bit-acciones{ display:flex; gap:6px; flex-wrap:wrap; }
+.bit-mini{ min-height:36px; padding:6px 10px; border-radius:8px; border:1px solid var(--borde,#d9e1e8); background:#fff; color:var(--azul,#1a5490); font-weight:600; cursor:pointer; font-size:.8rem; }
+.bit-rojo{ color:#9b1c1c; border-color:#f0c4c4; }
+.bit-pre{ background:#f4f6f8; border-radius:10px; padding:12px; white-space:pre-wrap; font-size:.85rem; margin:10px 0; max-height:380px; overflow:auto; }
+.bit-errores{ margin:6px 0 10px 18px; font-size:.88rem; color:#9b1c1c; }
+.bit-tarjeta{ border:2px dashed var(--azul,#1a5490); border-radius:14px; padding:14px; text-align:center; margin:10px 0; }
+.bit-codigo{ font-family:monospace; font-size:2rem; font-weight:700; letter-spacing:.08em; color:var(--azul-osc,#123c68); }
+.bit-oculta .bit-nom{ filter:blur(6px); user-select:none; }
+@media print{
+  body.bit-imprime *{ visibility:hidden; }
+  body.bit-imprime .bit-tarjeta,body.bit-imprime .bit-tarjeta *{ visibility:visible; }
+  body.bit-imprime .bit-tarjeta{ position:absolute; left:0; top:0; width:100%; border:2px solid #000; }
+  body.bit-imprime .bit-nopr{ display:none; }
+}

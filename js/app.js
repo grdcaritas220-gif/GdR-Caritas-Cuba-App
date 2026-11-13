@@ -148,8 +148,15 @@ function mostrarPregunta(pregunta) {
 
 function volverInicio() {
     document.getElementById('resultados').innerHTML =
-        '<p class="mensaje-inicial">Escribe una pregunta o explora las categorías</p>';
+        '<p class="mensaje-inicial">Bienvenido. Elige una opción del menú.</p>';
     document.getElementById('input-busqueda').value = '';
+
+    // OCULTAR LAS TARJETAS DE CATEGORÍAS
+    const seccionBloques = document.querySelector('.bloques');
+    if (seccionBloques) seccionBloques.style.display = 'none';
+
+    // Quitar el azul de todos los botones
+    document.querySelectorAll('.btn-acceso').forEach(btn => btn.classList.remove('active'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {

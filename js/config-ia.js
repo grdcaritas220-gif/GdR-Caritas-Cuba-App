@@ -2,5 +2,5 @@
 const CONFIG_IA = {
     apiKey: 'NO_NECESARIA',
     apiUrl: 'http://localhost:11434/api/chat',
-    modelo: 'phi3'
+    modelo: 'caritas-grd'
 };

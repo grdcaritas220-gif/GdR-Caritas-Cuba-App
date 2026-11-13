@@ -628,7 +628,9 @@ async function abrirGuia() {
   const contenedor = document.getElementById('resultados');
 
   try {
-    const respuesta = await fetch('./datos/guia-uso.md');
+    const esCoordinador = document.body.classList.contains('modo-coordinador');
+    const archivoGuia = esCoordinador ? 'guia-coordinador.md' : 'guia-uso.md';
+    const respuesta = await fetch('./datos/' + archivoGuia);
     const texto = await respuesta.text();
 
     // Convertir Markdown a HTML básico

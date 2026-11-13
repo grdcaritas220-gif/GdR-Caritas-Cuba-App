@@ -12,8 +12,8 @@
   // La IA en línea envía el texto de las preguntas a un servicio externo.
   // Déjala en false mientras no se decida la política de privacidad y
   // mientras la clave API siga en el navegador.
-  const IA_ONLINE_HABILITADA = false;
-  const IA_TIMEOUT_MS = 12000;
+  const IA_ONLINE_HABILITADA = true;
+  const IA_TIMEOUT_MS = 60000;
   const DIAS_AVISO_RESPALDO = 7;
   const AVISO_EMERGENCIA =
     '\n\n⚠️ Respuesta orientativa. Ante una emergencia, siga las indicaciones de la Defensa Civil.';
@@ -26,6 +26,12 @@
       .replace(/[^a-z0-9ñ\s]/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
+  }
+  function tokens(texto) {
+    return texto.toLowerCase()
+      .replace(/[^\w\s]/g, '')
+      .split(/\s+/)
+      .filter(p => p.length > 2);
   }
 
   function escaparHTML(s) {
@@ -126,6 +132,34 @@
     const entrada = document.getElementById('chat-input');
     if (entrada) entrada.placeholder = 'Pregunta sin nombres ni datos personales';
   };
+  // ===== FUNCIÓN PARA BUSCAR EN LA BIBLIOTECA =====
+  async function buscarEnBiblioteca(pregunta) {
+    const archivos = ['caritas-guia.md', 'defensa-civil-caritas.md', 'glosario-grd.md', 'ley-149.md'];
+    const palabras = tokens(pregunta);
+    let fragmentos = [];
+
+    for (const archivo of archivos) {
+      try {
+        const respuesta = await fetch(`./datos/documentos/${archivo}`);
+        if (!respuesta.ok) continue;
+        const texto = await respuesta.text();
+
+        const parrafos = texto.split('\n\n');
+        for (const parrafo of parrafos) {
+          const parrafoNorm = normalizar(parrafo);
+          const puntos = palabras.filter(p => parrafoNorm.includes(p)).length;
+          if (puntos > 0 && parrafo.trim().length > 40) {
+            fragmentos.push({ archivo, texto: parrafo.trim(), puntos });
+          }
+        }
+      } catch (e) {
+        console.warn('No se pudo leer', archivo, e);
+      }
+    }
+
+    fragmentos.sort((a, b) => b.puntos - a.puntos);
+    return fragmentos.slice(0, 3);
+  }
 
   window.enviarMensajeIA = async function () {
     const input = document.getElementById('chat-input');
@@ -139,12 +173,28 @@
 
     const claveValida = typeof CONFIG_IA !== 'undefined' && CONFIG_IA.apiKey &&
       CONFIG_IA.apiKey !== 'TU_CLAVE_AQUI';
-    const usarIA = IA_ONLINE_HABILITADA && claveValida && navigator.onLine;
-
+    const usarIA = true;
     if (!usarIA) {
       quitarEscribiendo();
       await window.buscarEnMotorReglas(texto);
       return;
+    }
+
+    // Buscar en la biblioteca
+    const fragmentos = await buscarEnBiblioteca(texto);
+    console.log('[IA] palabras buscadas:', tokens(texto), '· fragmentos:', fragmentos.map(f => f.archivo + ' (' + f.puntos + ')'));
+    let contexto = '';
+    if (fragmentos.length === 0) {
+      quitarEscribiendo();
+      agregarMensajeChat('No encontré esto en la biblioteca, así que no voy a inventar una respuesta. Prueba con otras palabras o consulta las 40 preguntas básicas.', 'bot');
+      await window.buscarEnMotorReglas(texto);
+      return;
+    }
+    if (fragmentos.length > 0) {
+      contexto = 'TEXTOS DE LA METODOLOGÍA:\n\n';
+      fragmentos.forEach(f => {
+        contexto += `[${f.archivo}]\n${f.texto}\n\n`;
+      });
     }
 
     const control = new AbortController();
@@ -153,15 +203,13 @@
       const respuesta = await fetch(CONFIG_IA.apiUrl, {
         method: 'POST',
         signal: control.signal,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + CONFIG_IA.apiKey },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: CONFIG_IA.modelo,
+          stream: false,
           messages: [
             {
-              role: 'system',
-              content: 'Eres un asistente de Gestión de Riesgo de Desastres para Cáritas Cuba. Responde en español, ' +
-                'breve y práctico. Si no estás seguro, dilo. Ante emergencias, indica seguir siempre las ' +
-                'indicaciones de la Defensa Civil. No pidas ni uses datos personales.'
+              content: 'Eres un asistente de Gestión de Riesgo de Desastres para Cáritas Cuba. Responde en español, breve y práctico. Si no estás seguro, dilo. Ante emergencias, indica seguir siempre las indicaciones de la Defensa Civil. No pidas ni uses datos personales.\n\n' + contexto + 'Responde SOLO con la información de los TEXTOS. Si no está, di "No lo sé con la información disponible". Al final de cada respuesta, escribe: "Fuente: [nombre del archivo]"',
             },
             { role: 'user', content: texto }
           ]
@@ -171,7 +219,7 @@
       if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
       const datos = await respuesta.json();
       quitarEscribiendo();
-      agregarMensajeChat(datos.choices[0].message.content + AVISO_EMERGENCIA, 'bot');
+      agregarMensajeChat(datos.message.content + AVISO_EMERGENCIA, 'bot');
     } catch (error) {
       clearTimeout(temporizador);
       quitarEscribiendo();
@@ -358,7 +406,7 @@
       'margin:8px;border-radius:8px;font-size:15px;line-height:1.4;';
     caja.innerHTML = '⚠️ <strong>Tus datos solo están en este teléfono.</strong> ' +
       (dias === null ? 'Aún no has hecho ningún respaldo.' : 'Tu último respaldo fue hace ' + dias + ' días.') +
-      ' Exporta el JSON y envíaselo a tu coordinador.<br>' +
+      ' Guarda un respaldo en tu teléfono. Si tu coordinador te lo pide, envíalo solo a él, sin nombres.<br>' +
       '<button id="aviso-exportar" style="margin:6px 8px 0 0;padding:6px 12px;">📤 Exportar ahora</button>' +
       '<button id="aviso-ocultar" style="margin-top:6px;padding:6px 12px;">Recordármelo mañana</button>';
     document.body.insertBefore(caja, document.body.firstChild);
@@ -477,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Esta función reemplaza la pantalla de Formación por la tarjeta dorada
     window.abrirFormacion = function () {
       const contenedor = document.getElementById('resultados');
+      if (contenedor) contenedor.innerHTML = '';
       contenedor.innerHTML = `
                 <button class="btn-volver" onclick="volverInicio()">← Volver</button>
                 <div class="formacion-contenedor" style="padding: 20px; text-align: center;">
@@ -492,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             Comenzar Curso Interactivo
                         </button>
                         <button onclick="exportarConstancia()" style="background: #4CAF50; color: white; font-weight: bold; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 15px; display: block; width: 100%;">
-                    📥 Exportar mi constancia de participación
+                    📥 Generar mi avance para mi coordinador
                 </button>                                
                 </div>
              `;
@@ -614,3 +663,42 @@ window.exportarConstancia = function () {
     alert(`¡Reporte generado con el ${porcentaje}% real de avance! Se ha guardado como imagen en tu teléfono.`);
   }, 'image/png');
 };
+// ===== MOSTRAR LAS 40 PREGUNTAS =====
+window.mostrar40Preguntas = function () {
+  // 1. Limpiamos la pantalla de resultados
+  const contenedor = document.getElementById('resultados');
+  contenedor.innerHTML = '<button class="btn-volver" onclick="volverInicio()">← Volver</button><p class="mensaje-inicial">Elige una categoría para ver las preguntas:</p>';
+
+  // 2. Hacemos visible la sección de bloques
+  const seccionBloques = document.querySelector('.bloques');
+  if (seccionBloques) {
+    seccionBloques.style.display = 'block';
+  }
+
+  // 3. Hacemos scroll hacia arriba para que se vean las tarjetas
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+// ===== CONTROL GLOBAL DE BOTONES ACTIVOS =====
+document.addEventListener('click', function (event) {
+  // Buscamos si el clic fue en un botón del menú o dentro de él
+  const boton = event.target.closest('.btn-acceso');
+
+  if (boton) {
+    // 1. Quitamos la clase 'active' a todos los botones del menú
+    const todosLosBotones = document.querySelectorAll('.btn-acceso');
+    todosLosBotones.forEach(btn => btn.classList.remove('active'));
+
+    // 2. Se la ponemos solo al botón que acabamos de pulsar
+    boton.classList.add('active');
+  }
+});
+// ===== QUITAR EL AZUL DEL BOTÓN DE RIESGOS AL INICIAR =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Esperamos un segundo a que la app cargue del todo
+  setTimeout(() => {
+    const btnRiesgos = document.querySelector('.btn-riesgos');
+    if (btnRiesgos) {
+      btnRiesgos.classList.remove('active');
+    }
+  }, 100);
+});

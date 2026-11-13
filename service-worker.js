@@ -4,7 +4,7 @@
 // IMPORTANTE: cada vez que cambies CUALQUIER archivo de la app
 // (contenido, código o estilos), cambia VERSION. Si no, los teléfonos
 // seguirán mostrando la versión vieja guardada en caché.
-const VERSION = '2026.11.02-14';
+const VERSION = '2026.11.13-1';
 const CACHE_NAME = 'gdr-caritas-' + VERSION;
 // Sin estos archivos la app no puede funcionar offline.
 // Si alguno falla al descargarse, la instalación se cancela y el teléfono
@@ -32,6 +32,29 @@ const ARCHIVOS_CRITICOS = [
     './gestion-del-riesgo/index.html',
     './gestion-del-riesgo/curso.css',
     './gestion-del-riesgo/curso.js',
+    './js/bitacora.js',
+    './js/modo.js',
+    './css/bitacora.css',
+    './gestion-del-riesgo/codigo-grd.js',
+    './gestion-del-riesgo/codigo-ui.js',
+    './gestion-del-riesgo/assets/climaco_amable.webp',
+    './gestion-del-riesgo/assets/climaco_aplauso.webp',
+    './gestion-del-riesgo/assets/climaco_atento.webp',
+    './gestion-del-riesgo/assets/climaco_boca_a.webp',
+    './gestion-del-riesgo/assets/climaco_boca_o.webp',
+    './gestion-del-riesgo/assets/climaco_frontal.webp',
+    './gestion-del-riesgo/assets/climaco_parpadeo.webp',
+    './gestion-del-riesgo/assets/climaco_sorprendido.webp',
+    './gestion-del-riesgo/assets/magnolia_amable.webp',
+    './gestion-del-riesgo/assets/magnolia_aplauso.webp',
+    './gestion-del-riesgo/assets/magnolia_atento.webp',
+    './gestion-del-riesgo/assets/magnolia_frontal.webp',
+    './gestion-del-riesgo/assets/magnolia_sorprendida.webp',
+    './gestion-del-riesgo/assets/presentacion_climaco_a.webp',
+    './gestion-del-riesgo/assets/presentacion_climaco_o.webp',
+    './gestion-del-riesgo/assets/presentacion_magnolia_a.webp',
+    './gestion-del-riesgo/assets/presentacion_magnolia_o.webp',
+    './gestion-del-riesgo/assets/presentacion_neutral.webp',
 ];
 // Documentos de la biblioteca: si alguno aún no existe, no bloquea la instalación.
 const ARCHIVOS_OPCIONALES = [

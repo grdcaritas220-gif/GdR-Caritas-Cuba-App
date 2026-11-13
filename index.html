@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/presentacion.css">
     <link rel="stylesheet" href="css/pantallas.css">
+    <link rel="stylesheet" href="css/bitacora.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a5490">
     <link rel="icon" href="iconos/icono-192.png">
@@ -30,13 +31,13 @@
                 </svg>
                 <span>Riesgos</span>
             </button>
-            <button class="btn-acceso btn-consultas" onclick="volverInicio()">
+            <button class="btn-acceso btn-consultas" onclick="mostrar40Preguntas()">
                 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="7" />
                     <path d="m20 20-3.6-3.6" />
                 </svg>
-                <span>Consultas</span>
+                <span>40 Preguntas Básicas</span>
             </button>
             <button class="btn-acceso btn-biblioteca" onclick="abrirBiblioteca()">
                 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
@@ -101,18 +102,34 @@
                 </svg>
                 <span>Rol</span>
             </button>
+            <button class="btn-acceso btn-coordinacion" id="btn-coordinacion" style="display: none;"
+                onclick="abrirBitacora()">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 4v16M4 12h16" />
+                </svg>
+                <span>Coordinación</span>
+            </button>
+            <button class="btn-acceso btn-mapa" id="btn-mapa" style="display: none;" onclick="abrirMapa()">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" />
+                    <circle cx="12" cy="9" r="3" />
+                </svg>
+                <span>Mapa parroquial</span>
+            </button>
         </section>
-        <section class="buscador">
+        <section class="buscador" style="display: none;">
             <input type="text" id="input-busqueda" placeholder="Escribe tu pregunta... ej: cómo identifico un riesgo"
                 autocomplete="off">
             <button id="btn-buscar">Buscar</button>
         </section>
 
         <section id="resultados" class="resultados">
-            <p class="mensaje-inicial">Escribe una pregunta o explor las categorías</p>
+            <p class="mensaje-inicial">Escribe una pregunta o explora las categorías</p>
         </section>
 
-        <section class="bloques">
+        <section class="bloques" style="display: none;">
             <h2>Explorar por categoría</h2>
             <div id="lista-bloques" class="lista-bloques"></div>
         </section>
@@ -124,9 +141,13 @@
 
     <script src="js/config-ia.js"></script>
     <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/riesgos.js"></script>
     <script src="js/mejoras.js"></script>
-    <script src="js/app.js"></script>
+    <script src="gestion-del-riesgo/codigo-grd.js"></script>
+    <script src="js/bitacora.js"></script>
+    <script src="js/modo.js"></script>
+    <script src="js/mapa.js"></script>
     <script>
         // Registrar el Service Worker para funcionar offline
         if ('serviceWorker' in navigator) {
